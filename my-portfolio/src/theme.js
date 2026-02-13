@@ -18,7 +18,7 @@ const theme = createTheme({
     },
     text: {
       primary: '#333333',
-      secondary: '#666666',
+      secondary: '#555555',
     },
   },
   typography: {
@@ -27,13 +27,19 @@ const theme = createTheme({
       fontFamily: '"Playfair Display", serif',
       fontWeight: 700,
       fontSize: '2.5rem',
-      letterSpacing: '0.15em',
+      letterSpacing: '0.12em',
       textTransform: 'uppercase',
+    },
+    h4: {
+      fontFamily: '"Playfair Display", serif',
+      fontWeight: 600,
+      fontSize: '1.8rem',
+      letterSpacing: '0.08em',
     },
     h5: {
       fontFamily: '"Playfair Display", serif',
       fontWeight: 600,
-      letterSpacing: '0.1em',
+      letterSpacing: '0.05em',
     },
     body1: {
       fontSize: '0.95rem',
@@ -45,6 +51,9 @@ const theme = createTheme({
     },
   },
   spacing: 8,
+  shape: {
+    borderRadius: 12,
+  },
 });
 
 export default theme;

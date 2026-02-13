@@ -3,22 +3,92 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Welcome</title>
+  <title>YJ Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --color-primary: #9B8BB4;
+      --color-primary-light: #B8A9C9;
+      --color-primary-dark: #5C4B7A;
+      --color-secondary: #E8B4C8;
+      --color-bg-lavender: #E8E0F0;
+      --color-border: #E8E0F0;
+      --color-shadow: rgba(156, 139, 180, 0.15);
+    }
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Segoe UI', sans-serif; background: linear-gradient(135deg, #667eea, #764ba2); color: #fff; min-height: 100vh; display: flex; align-items: center; justify-content: center; }
-    .container { text-align: center; padding: 2rem; max-width: 600px; }
-    h1 { font-size: clamp(2rem, 5vw, 3rem); margin-bottom: 1rem; }
-    p { font-size: clamp(1rem, 2.5vw, 1.25rem); line-height: 1.6; opacity: 0.9; margin-bottom: 1.5rem; }
-    a { color: #fff; background: rgba(255,255,255,0.2); padding: 0.75rem 2rem; border-radius: 30px; text-decoration: none; transition: background 0.3s; }
-    a:hover { background: rgba(255,255,255,0.35); }
+    body {
+      font-family: 'Noto Sans KR', sans-serif;
+      background: linear-gradient(135deg, var(--color-primary-light), var(--color-primary-dark));
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .container {
+      text-align: center;
+      padding: 3rem;
+      max-width: 650px;
+      background: rgba(255, 255, 255, 0.12);
+      border-radius: 20px;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 8px 32px rgba(92, 75, 122, 0.3);
+    }
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 5vw, 3rem);
+      margin-bottom: 1rem;
+      letter-spacing: 0.08em;
+    }
+    p {
+      font-size: clamp(0.95rem, 2.5vw, 1.15rem);
+      line-height: 1.8;
+      opacity: 0.9;
+      margin-bottom: 2rem;
+    }
+    .links {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    a {
+      color: #fff;
+      background: rgba(255, 255, 255, 0.18);
+      padding: 0.75rem 2rem;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: background 0.3s, transform 0.2s;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+    }
+    a:hover {
+      background: rgba(255, 255, 255, 0.3);
+      transform: translateY(-2px);
+    }
+    a.primary {
+      background: var(--color-secondary);
+      color: var(--color-primary-dark);
+      border-color: var(--color-secondary);
+      font-weight: 700;
+    }
+    a.primary:hover {
+      background: #F0D0DE;
+    }
   </style>
 </head>
 <body>
   <div class="container">
-    <h1>안녕하세요!</h1>
-    <p>저는 웹 개발을 공부하고 있는 개발자입니다. 이곳은 저의 첫 번째 웹사이트입니다.</p>
-    <a href="https://github.com/2vee1224">GitHub 방문하기</a>
+    <h1>YJ PORTFOLIO</h1>
+    <p>안녕하세요! 저는 웹 디자인을 공부하고 있는 임여진입니다.<br>이곳은 저의 포트폴리오 웹사이트입니다.</p>
+    <div class="links">
+      <a class="primary" href="./my-portfolio/dist/index.html">포트폴리오 보기</a>
+      <a href="https://github.com/2vee1224">GitHub 방문하기</a>
+    </div>
   </div>
 </body>
 </html>
