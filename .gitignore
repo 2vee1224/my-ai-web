@@ -1,0 +1,12 @@
+# 개인 정보 / 비밀 파일
+내 정보.txt
+
+# 로그 파일
+logs/
+
+# Node
+node_modules/
+
+# 환경 변수
+.env
+.env.*
