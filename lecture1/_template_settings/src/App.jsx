@@ -17,7 +17,7 @@ import MovieIcon from '@mui/icons-material/Movie';
 import FlightIcon from '@mui/icons-material/Flight';
 import './App.css';
 
-const navItems = ['About me', 'History', 'Skills', 'Project', 'Contact'];
+const navItems = ['About me', 'History', 'Skills', 'Project', 'Contect'];
 
 const scrollToSection = (sectionId) => {
   const el = document.getElementById(sectionId);
@@ -38,7 +38,7 @@ function Navigation() {
         zIndex: 1000,
       }}
     >
-      <Toolbar sx={{ justifyContent: 'center', gap: 4 }}>
+      <Toolbar sx={{ justifyContent: 'center', gap: 4, minHeight: '48px !important' }}>
         {navItems.map((item) => (
           <Button
             key={item}
@@ -46,9 +46,10 @@ function Navigation() {
             sx={{
               color: '#333',
               fontFamily: '"Playfair Display", serif',
-              fontSize: '1rem',
+              fontSize: '0.95rem',
               fontWeight: 500,
               letterSpacing: '0.05em',
+              py: 0.5,
               '&:hover': { color: '#9B8BB4', bgcolor: 'transparent' },
             }}
           >
@@ -66,7 +67,7 @@ function SectionTitle({ children }) {
       variant="h4"
       sx={{
         textAlign: 'center',
-        mb: 3,
+        mb: 2.5,
         color: '#5C4B7A',
         fontFamily: '"Playfair Display", serif',
         fontWeight: 700,
@@ -82,114 +83,118 @@ function SectionTitle({ children }) {
 function AboutMe() {
   return (
     <Box id="about-me" className="page page-1">
-      <Container maxWidth="md" sx={{ pt: 8 }}>
-        <SectionTitle>About Me</SectionTitle>
+      <Box className="page-inner" sx={{ pt: '56px' }}>
+        <Container maxWidth="md">
+          <SectionTitle>About Me</SectionTitle>
 
-        {/* Profile area */}
-        <Box className="about-profile-card">
-          <Box className="about-profile-row">
-            <Box className="profile-photo-placeholder">
-              <Typography sx={{ color: '#B8A9C9', fontSize: '0.85rem' }}>PHOTO</Typography>
-            </Box>
-            <Box className="profile-info">
-              <Typography variant="h6" sx={{ fontWeight: 700, mb: 0.5 }}>
-                임여진 / Limyeojin
+          {/* Profile area */}
+          <Box className="about-profile-card">
+            <Box sx={{ textAlign: 'center', mb: 1 }}>
+              <Typography variant="h6" sx={{ fontWeight: 700 }}>
+                임여진 <Typography component="span" sx={{ fontWeight: 400, color: '#888' }}>/ Limyeojin</Typography>
               </Typography>
-              <Typography variant="body2" sx={{ color: '#888', mb: 1 }}>
+              <Typography variant="body2" sx={{ color: '#888' }}>
                 1997 . 12 . 24
               </Typography>
-              <Typography variant="body2" sx={{ lineHeight: 1.9, color: '#555' }}>
-                추구미는 여러여장뿐이지만 그렇지 못한편
-                <br />
-                비전공자 출신으로 뒤늦게 처음부터 새로 시작했지만
-                <br />
-                미래의 웹디자이너가 될 사람
-              </Typography>
-              <Box sx={{ display: 'flex', gap: 6, mt: 1.5 }}>
-                <Typography variant="body2" sx={{ lineHeight: 1.9, color: '#555' }}>
-                  호기심많은 예술가
+            </Box>
+            <Box className="about-profile-row">
+              <Box className="profile-photo-placeholder">
+                <Typography sx={{ color: '#B8A9C9', fontSize: '0.85rem' }}>PHOTO</Typography>
+              </Box>
+              <Box className="profile-info">
+                <Typography variant="body2" sx={{ lineHeight: 1.8, color: '#555', textAlign: 'center', mb: 1.5 }}>
+                  추구미는 여러여리함<span style={{ color: '#9B8BB4' }}>💜</span>이지만 그렇지 못한편
                   <br />
-                  낯을 좀 가리지만 친해지면
+                  비전공자 출신으로 뒤늦게 처음부터 새로 시작했지만
                   <br />
-                  ISFP 지고 매나 싫싫 없편
-                  <br />
-                  일할때 튀어나오는
-                  <br />
-                  빠르고 계획적으로 일처리하는 능력자
+                  미래의 <strong>웹디자이너</strong>가 될 사람 😊
                 </Typography>
-                <Typography variant="body2" sx={{ lineHeight: 1.9, color: '#9B8BB4', fontWeight: 500 }}>
-                  ISFP
-                  <br />
-                  재밌고 매력이 넘치는 성격
-                  <br />
-                  성실한 편
-                  <br />
-                  TJ 모먼트
-                </Typography>
+                <Box sx={{ display: 'flex', justifyContent: 'center', gap: 6 }}>
+                  <Typography variant="body2" sx={{ lineHeight: 2, color: '#555' }}>
+                    호기심많은 예술가
+                    <br />
+                    낯을 좀 가리지만 친해지면
+                    <br />
+                    ISFP 지고 매나 싫싫 없편
+                    <br />
+                    일할때 튀어나오는
+                    <br />
+                    <span style={{ color: '#9B8BB4', fontWeight: 600 }}>빠르고 계획적으로 일처리하는 능력자 🔥</span>
+                  </Typography>
+                  <Typography variant="body2" sx={{ lineHeight: 2, color: '#9B8BB4', fontWeight: 500 }}>
+                    ISFP
+                    <br />
+                    재밌고 매력이 넘치는 성격
+                    <br />
+                    성실 🔥한편
+                    <br />
+                    TJ 모먼트
+                  </Typography>
+                </Box>
               </Box>
             </Box>
           </Box>
-        </Box>
 
-        {/* My Favorites */}
-        <Box sx={{ mt: 3 }}>
-          <Typography
-            variant="h6"
-            sx={{
-              color: '#5C4B7A',
-              mb: 2,
-              fontFamily: '"Playfair Display", serif',
-              letterSpacing: '0.1em',
-            }}
-          >
-            MY FAVORITES
-          </Typography>
-          <Grid container spacing={2}>
-            {[
-              {
-                icon: <SportsEsportsIcon sx={{ fontSize: 36, color: '#B8A9C9' }} />,
-                title: 'GAME',
-                desc: '친구들과 게임하거나\n유튜브로 게임영상 보는걸\n좋아해요!',
-              },
-              {
-                icon: <MovieIcon sx={{ fontSize: 36, color: '#B8A9C9' }} />,
-                title: 'MOVIES',
-                desc: '쉬는날 집에서 혼자\n영화보는걸 좋아해요!\n최애영화는 트와일라잇 시리즈',
-              },
-              {
-                icon: <FlightIcon sx={{ fontSize: 36, color: '#B8A9C9' }} />,
-                title: 'TRAVEL',
-                desc: '국내든 해외든 여행다니는걸\n좋아해요!',
-              },
-            ].map((item) => (
-              <Grid size={{ xs: 12, sm: 4 }} key={item.title}>
-                <Card className="favorite-card" elevation={0}>
-                  <CardContent sx={{ textAlign: 'center', p: 2 }}>
-                    <Box className="favorite-icon-box">{item.icon}</Box>
-                    <Typography
-                      variant="subtitle2"
-                      sx={{
-                        fontWeight: 700,
-                        mb: 0.5,
-                        fontFamily: '"Playfair Display", serif',
-                        color: '#5C4B7A',
-                      }}
-                    >
-                      {item.title}
-                    </Typography>
-                    <Typography
-                      variant="caption"
-                      sx={{ color: '#666', whiteSpace: 'pre-line', lineHeight: 1.6, display: 'block' }}
-                    >
-                      {item.desc}
-                    </Typography>
-                  </CardContent>
-                </Card>
-              </Grid>
-            ))}
-          </Grid>
-        </Box>
-      </Container>
+          {/* My Favorites */}
+          <Box sx={{ mt: 2.5 }}>
+            <Typography
+              variant="h6"
+              sx={{
+                color: '#5C4B7A',
+                mb: 1.5,
+                fontFamily: '"Playfair Display", serif',
+                letterSpacing: '0.1em',
+              }}
+            >
+              MY FAVORITES
+            </Typography>
+            <Grid container spacing={2}>
+              {[
+                {
+                  icon: <SportsEsportsIcon sx={{ fontSize: 36, color: '#B8A9C9' }} />,
+                  title: 'GAME',
+                  desc: '친구들과 게임하거나\n유튜브로 게임영상 보는걸\n좋아해요! 🎮',
+                },
+                {
+                  icon: <MovieIcon sx={{ fontSize: 36, color: '#B8A9C9' }} />,
+                  title: 'MOVIES',
+                  desc: '쉬는날 집에서 혼자\n영화보는걸 좋아해요!\n최애영화는 트와일라잇 시리즈💗',
+                },
+                {
+                  icon: <FlightIcon sx={{ fontSize: 36, color: '#B8A9C9' }} />,
+                  title: 'TRAVEL',
+                  desc: '국내든 해외든 여행다니는걸\n좋아해요! ✈️',
+                },
+              ].map((item) => (
+                <Grid size={{ xs: 12, sm: 4 }} key={item.title}>
+                  <Card className="favorite-card" elevation={0}>
+                    <CardContent sx={{ textAlign: 'center', p: 2 }}>
+                      <Box className="favorite-icon-box">{item.icon}</Box>
+                      <Typography
+                        variant="subtitle2"
+                        sx={{
+                          fontWeight: 700,
+                          mb: 0.5,
+                          fontFamily: '"Playfair Display", serif',
+                          color: '#5C4B7A',
+                        }}
+                      >
+                        {item.title}
+                      </Typography>
+                      <Typography
+                        variant="caption"
+                        sx={{ color: '#666', whiteSpace: 'pre-line', lineHeight: 1.6, display: 'block' }}
+                      >
+                        {item.desc}
+                      </Typography>
+                    </CardContent>
+                  </Card>
+                </Grid>
+              ))}
+            </Grid>
+          </Box>
+        </Container>
+      </Box>
     </Box>
   );
 }
@@ -198,10 +203,10 @@ function HistoryAndSkills() {
   const leftItems = [
     {
       title: '송원대학교 뷰티예술학과 16학번',
-      detail: '(2016.03~2020.02 졸업)',
+      detail: '( 2016.03~2020.02 졸업)',
     },
     {
-      title: '국제수영대회 [FINA] 에서\n메이크업아티스트로 활동 & 수상자 메이크업 담당',
+      title: '국제수영연맹 [FINA] 에서\n메이크업아티스트로써 특수분장 자원봉사',
       detail: '(2019.07)',
     },
     {
@@ -223,10 +228,6 @@ function HistoryAndSkills() {
       detail: '2019.12 경찰청',
     },
     {
-      title: '바리스타1급',
-      detail: '2020.10 한국직업능력진흥원',
-    },
-    {
       title: '컴퓨터그래픽기능사 (취득예정)',
     },
     {
@@ -240,11 +241,12 @@ function HistoryAndSkills() {
     { name: 'Excel', abbr: 'X', color: '#217346', level: 70 },
     { name: 'Illustrator', abbr: 'Ai', color: '#FF9A00', level: 65 },
     { name: 'Word', abbr: 'W', color: '#2B579A', level: 60 },
+    { name: 'Adobe XD', abbr: 'Xd', color: '#FF61F6', level: 55 },
   ];
 
   return (
     <Box id="history" className="page page-2">
-      {/* History - 60% (3/5) */}
+      {/* History - 3/5 */}
       <Box className="page-2-history">
         <Container maxWidth="md">
           <SectionTitle>History</SectionTitle>
@@ -256,7 +258,7 @@ function HistoryAndSkills() {
                   {leftItems.map((item, i) => (
                     <Box key={i} className="timeline-item">
                       <Box className="timeline-dot" />
-                      <Typography variant="body2" sx={{ fontWeight: 500, whiteSpace: 'pre-line' }}>
+                      <Typography variant="body2" sx={{ fontWeight: 500, whiteSpace: 'pre-line', fontSize: '0.8rem' }}>
                         {item.title}
                       </Typography>
                       {item.detail && (
@@ -273,7 +275,7 @@ function HistoryAndSkills() {
                   {rightItems.map((item, i) => (
                     <Box key={i} className="timeline-item">
                       <Box className="timeline-dot" />
-                      <Typography variant="body2" sx={{ fontWeight: 500, whiteSpace: 'pre-line' }}>
+                      <Typography variant="body2" sx={{ fontWeight: 500, whiteSpace: 'pre-line', fontSize: '0.8rem' }}>
                         {item.title}
                       </Typography>
                       {item.detail && (
@@ -290,7 +292,7 @@ function HistoryAndSkills() {
         </Container>
       </Box>
 
-      {/* Skills - 40% (2/5) */}
+      {/* Skills - 2/5 */}
       <Box id="skills" className="page-2-skills">
         <Container maxWidth="md">
           <SectionTitle>Skills</SectionTitle>
@@ -303,14 +305,14 @@ function HistoryAndSkills() {
                       className="skill-icon"
                       sx={{ bgcolor: skill.color, color: 'white' }}
                     >
-                      <Typography sx={{ fontWeight: 700, fontSize: '0.75rem' }}>
+                      <Typography sx={{ fontWeight: 700, fontSize: '0.7rem' }}>
                         {skill.abbr}
                       </Typography>
                     </Box>
                     <Box sx={{ flex: 1 }}>
                       <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 0.5 }}>
                         <FavoriteIcon sx={{ fontSize: 14, color: '#E8B4C8' }} />
-                        <Typography variant="body2" sx={{ fontWeight: 500 }}>
+                        <Typography variant="body2" sx={{ fontWeight: 500, fontSize: '0.8rem' }}>
                           {skill.name}
                         </Typography>
                       </Box>
@@ -342,13 +344,11 @@ function HistoryAndSkills() {
 function ProjectAndContact() {
   const projects = [
     {
-      logo: 'Gong cha',
       title: '공차 카페 홈페이지 리디자인',
       tool: '사용툴 : Ps',
       detail: '기여도 100%\n기획 3일 / 작업 4주 소요',
     },
     {
-      logo: 'Jasminbell',
       title: '자스민벨 쇼핑몰 홈페이지 리디자인',
       tool: '사용툴 : Ps',
       detail: '기여도 100%\n기획 3일 / 작업 4주 소요',
@@ -357,7 +357,7 @@ function ProjectAndContact() {
 
   return (
     <Box id="project" className="page page-3">
-      {/* Project - 80% (8/10) */}
+      {/* Project - 8.5/10 */}
       <Box className="page-3-project">
         <Container maxWidth="md">
           <SectionTitle>Project</SectionTitle>
@@ -384,10 +384,10 @@ function ProjectAndContact() {
         </Container>
       </Box>
 
-      {/* Contact - 20% (2/10) */}
-      <Box id="contact" className="page-3-contact">
+      {/* Contect - 1.5/10 */}
+      <Box id="contect" className="page-3-contact">
         <Container maxWidth="md">
-          <SectionTitle>Contact</SectionTitle>
+          <SectionTitle>Contect</SectionTitle>
           <Box sx={{ textAlign: 'center' }}>
             <Box
               sx={{
@@ -396,13 +396,13 @@ function ProjectAndContact() {
                 gap: 1.5,
                 bgcolor: 'white',
                 px: 4,
-                py: 1.5,
+                py: 1,
                 borderRadius: 3,
                 boxShadow: '0 2px 12px rgba(156,139,180,0.15)',
               }}
             >
               <EmailIcon sx={{ color: '#9B8BB4' }} />
-              <Typography variant="body1" sx={{ color: '#555' }}>
+              <Typography variant="body2" sx={{ color: '#555' }}>
                 wlsdlgnsdl97@naver.com
               </Typography>
             </Box>
