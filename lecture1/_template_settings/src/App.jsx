@@ -241,7 +241,7 @@ function HistoryAndSkills() {
     { name: 'Excel', abbr: 'X', color: '#217346', level: 70 },
     { name: 'Illustrator', abbr: 'Ai', color: '#FF9A00', level: 65 },
     { name: 'Word', abbr: 'W', color: '#2B579A', level: 60 },
-    { name: 'Adobe XD', abbr: 'Xd', color: '#FF61F6', level: 55 },
+    { name: 'VS Code', abbr: 'VS', color: '#007ACC', level: 55 },
   ];
 
   return (
