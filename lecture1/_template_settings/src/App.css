@@ -47,6 +47,13 @@
   flex: 1;
 }
 
+/* ===== Personality columns ===== */
+.personality-columns {
+  display: flex;
+  justify-content: center;
+  gap: 48px;
+}
+
 /* ===== Favorites ===== */
 .favorite-card {
   background: white !important;
@@ -230,15 +237,11 @@
   justify-content: center;
 }
 
-/* ===== 모바일 성격 두 열 ===== */
-.personality-columns {
-  display: flex;
-  justify-content: center;
-  gap: 48px;
-}
-
-/* ===== Responsive (768px 이하) ===== */
+/* ==========================================================
+   모바일 전용 (768px 이하) - PC 레이아웃에 영향 없음
+   ========================================================== */
 @media (max-width: 768px) {
+  /* 페이지 고정 높이 해제 */
   .page {
     height: auto;
     min-height: auto;
@@ -247,6 +250,32 @@
 
   .page-inner {
     justify-content: flex-start;
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+
+  /* 네비게이션 */
+  .nav-bar {
+    max-width: 100% !important;
+  }
+
+  .nav-toolbar {
+    gap: 4px !important;
+    padding-left: 4px !important;
+    padding-right: 4px !important;
+  }
+
+  .nav-button {
+    font-size: 0.72rem !important;
+    padding-left: 6px !important;
+    padding-right: 6px !important;
+    min-width: auto !important;
+  }
+
+  /* 섹션 타이틀 */
+  .section-title {
+    font-size: 1.4rem !important;
+    margin-bottom: 12px !important;
   }
 
   /* About Me */
@@ -258,7 +287,7 @@
     flex-direction: column;
     align-items: center;
     text-align: center;
-    gap: 16px;
+    gap: 12px;
   }
 
   .profile-photo-placeholder {
@@ -269,17 +298,25 @@
 
   .personality-columns {
     flex-direction: column;
-    gap: 8px;
+    gap: 4px;
     align-items: center;
+    text-align: center;
   }
 
-  /* Favorites */
   .favorite-icon-box {
     width: 44px;
     height: 44px;
   }
 
-  /* History */
+  /* History / Skills 섹션 높이 */
+  .page-2-history,
+  .page-2-skills,
+  .page-3-project,
+  .page-3-contact {
+    flex: none;
+    padding: 28px 8px;
+  }
+
   .timeline-line {
     display: none;
   }
@@ -299,7 +336,6 @@
     gap: 10px;
   }
 
-  /* Skills */
   .skills-card {
     padding: 16px;
   }
@@ -318,16 +354,7 @@
     height: 100px;
   }
 
-  /* 섹션 높이/패딩 */
-  .page-2-history,
-  .page-2-skills,
-  .page-3-project,
   .page-3-contact {
-    flex: none;
-    padding: 32px 0;
-  }
-
-  .page-3-contact {
-    padding: 24px 0;
+    padding: 20px 8px;
   }
 }

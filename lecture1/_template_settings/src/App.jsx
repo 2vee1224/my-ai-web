@@ -29,35 +29,29 @@ function Navigation() {
     <AppBar
       position="fixed"
       elevation={0}
+      className="nav-bar"
       sx={{
         bgcolor: 'rgba(255,255,255,0.95)',
         borderBottom: '1px solid #eee',
-        maxWidth: { xs: '100%', md: '1200px' },
+        maxWidth: '1200px',
         left: '50%',
         transform: 'translateX(-50%)',
-        width: '100%',
         zIndex: 1000,
       }}
     >
-      <Toolbar sx={{
-        justifyContent: 'center',
-        gap: { xs: 0.5, sm: 4 },
-        minHeight: '48px !important',
-        px: { xs: 0, sm: 2 },
-      }}>
+      <Toolbar className="nav-toolbar" sx={{ justifyContent: 'center', gap: 4, minHeight: '48px !important' }}>
         {navItems.map((item) => (
           <Button
             key={item}
             onClick={() => scrollToSection(item.toLowerCase().replace(' ', '-'))}
+            className="nav-button"
             sx={{
               color: '#333',
               fontFamily: '"Playfair Display", serif',
-              fontSize: { xs: '0.7rem', sm: '0.95rem' },
+              fontSize: '0.95rem',
               fontWeight: 500,
               letterSpacing: '0.05em',
               py: 0.5,
-              px: { xs: 0.8, sm: 2 },
-              minWidth: 'auto',
               '&:hover': { color: '#9B8BB4', bgcolor: 'transparent' },
             }}
           >
@@ -73,15 +67,15 @@ function SectionTitle({ children }) {
   return (
     <Typography
       variant="h4"
+      className="section-title"
       sx={{
         textAlign: 'center',
-        mb: { xs: 1.5, sm: 2.5 },
+        mb: 2.5,
         color: '#5C4B7A',
         fontFamily: '"Playfair Display", serif',
         fontWeight: 700,
         letterSpacing: '0.1em',
         textTransform: 'uppercase',
-        fontSize: { xs: '1.5rem', sm: '2.125rem' },
       }}
     >
       {children}
@@ -92,7 +86,7 @@ function SectionTitle({ children }) {
 function AboutMe() {
   return (
     <Box id="about-me" className="page page-1">
-      <Box className="page-inner" sx={{ pt: '56px', px: { xs: 1, sm: 0 } }}>
+      <Box className="page-inner" sx={{ pt: '56px' }}>
         <Container maxWidth="md">
           <SectionTitle>About Me</SectionTitle>
 
@@ -323,7 +317,7 @@ function HistoryAndSkills() {
           <Box className="skills-card">
             <Grid container spacing={2}>
               {skills.map((skill) => (
-                <Grid size={{ xs: 12, sm: 6 }} key={skill.name}>
+                <Grid size={{ xs: 6, sm: 6 }} key={skill.name}>
                   <Box className="skill-row">
                     <Box
                       className="skill-icon"
