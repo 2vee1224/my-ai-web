@@ -1,36 +1,33 @@
-/* ===== Common Section ===== */
-.section {
+/* ===== Page (scroll snap unit) ===== */
+.page {
   height: 1080px;
   scroll-snap-align: start;
-  overflow-y: auto;
-  display: flex;
-  align-items: center;
-  padding: 40px 0;
+  overflow: hidden;
 }
 
-/* ===== About Me ===== */
-.section-about {
+/* ===== Page 1: About Me ===== */
+.page-1 {
   background: linear-gradient(180deg, #E8E0F0 0%, #F8F5FC 100%);
 }
 
 .about-profile-card {
   background: white;
   border-radius: 16px;
-  padding: 40px;
+  padding: 28px 32px;
   box-shadow: 0 4px 20px rgba(156, 139, 180, 0.15);
   border: 1px solid #E8E0F0;
 }
 
 .about-profile-row {
   display: flex;
-  gap: 32px;
+  gap: 28px;
   align-items: flex-start;
 }
 
 .profile-photo-placeholder {
-  width: 150px;
-  height: 150px;
-  min-width: 150px;
+  width: 140px;
+  height: 140px;
+  min-width: 140px;
   border-radius: 50%;
   background: linear-gradient(135deg, #E8E0F0, #D0C4E0);
   display: flex;
@@ -58,25 +55,42 @@
 }
 
 .favorite-icon-box {
-  width: 70px;
-  height: 70px;
+  width: 56px;
+  height: 56px;
   border-radius: 50%;
   background: #F8F5FC;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 auto 16px;
+  margin: 0 auto 10px;
   border: 2px solid #E8E0F0;
 }
 
-/* ===== History ===== */
-.section-history {
+/* ===== Page 2: History(3) + Skills(2) ===== */
+.page-2 {
+  display: flex;
+  flex-direction: column;
+}
+
+.page-2-history {
+  flex: 3;
   background: white;
+  display: flex;
+  align-items: center;
+  padding: 30px 0;
+}
+
+.page-2-skills {
+  flex: 2;
+  background: linear-gradient(180deg, #E8EDF5 0%, #F0EDF7 100%);
+  display: flex;
+  align-items: center;
+  padding: 24px 0;
 }
 
 .timeline-container {
   position: relative;
-  padding: 20px 0;
+  padding: 10px 0;
 }
 
 .timeline-line {
@@ -92,7 +106,7 @@
 .timeline-side {
   display: flex;
   flex-direction: column;
-  gap: 28px;
+  gap: 16px;
 }
 
 .timeline-left {
@@ -107,7 +121,7 @@
 
 .timeline-item {
   position: relative;
-  padding: 16px 20px;
+  padding: 12px 16px;
   background: white;
   border-radius: 10px;
   border: 1px solid #E8E0F0;
@@ -122,7 +136,7 @@
   background: #B8A9C9;
   border: 2px solid white;
   box-shadow: 0 0 0 2px #B8A9C9;
-  top: 20px;
+  top: 16px;
 }
 
 .timeline-left .timeline-dot {
@@ -133,45 +147,57 @@
   left: -30px;
 }
 
-/* ===== Skills ===== */
-.section-skills {
-  background: linear-gradient(180deg, #E8EDF5 0%, #F0EDF7 100%);
-}
-
 .skills-card {
   background: white;
   border-radius: 16px;
-  padding: 40px;
+  padding: 28px 32px;
   box-shadow: 0 4px 20px rgba(156, 139, 180, 0.15);
 }
 
 .skill-row {
   display: flex;
   align-items: center;
-  gap: 16px;
-  padding: 8px 0;
+  gap: 12px;
+  padding: 6px 0;
 }
 
 .skill-icon {
-  width: 36px;
-  height: 36px;
-  min-width: 36px;
+  width: 32px;
+  height: 32px;
+  min-width: 32px;
   border-radius: 6px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-/* ===== Project ===== */
-.section-project {
+/* ===== Page 3: Project(8) + Contact(2) ===== */
+.page-3 {
+  display: flex;
+  flex-direction: column;
+}
+
+.page-3-project {
+  flex: 8;
   background: white;
+  display: flex;
+  align-items: center;
+  padding: 30px 0;
+}
+
+.page-3-contact {
+  flex: 2;
+  background: linear-gradient(180deg, #F0EDF7 0%, #E8E0F0 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .project-row {
   display: flex;
   align-items: center;
   gap: 24px;
-  padding: 24px;
+  padding: 20px;
   border-radius: 12px;
   border: 1px solid #E8E0F0;
   background: #FDFCFE;
@@ -182,25 +208,13 @@
   box-shadow: 0 4px 16px rgba(156, 139, 180, 0.15);
 }
 
-.project-logo-box {
-  width: 120px;
-  height: 120px;
-  min-width: 120px;
-  border-radius: 12px;
-  background: #F8F5FC;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid #E8E0F0;
-}
-
 .project-info {
   flex: 1;
 }
 
 .project-preview-box {
   width: 200px;
-  height: 130px;
+  height: 120px;
   min-width: 200px;
   border-radius: 10px;
   background: linear-gradient(135deg, #E8E0F0, #D0C4E0);
@@ -209,22 +223,11 @@
   justify-content: center;
 }
 
-/* ===== Contact ===== */
-.section-contact {
-  background: linear-gradient(180deg, #F0EDF7 0%, #E8E0F0 100%);
-}
-
-/* ===== Footer snap ===== */
-.footer-section {
-  scroll-snap-align: start;
-}
-
 /* ===== Responsive ===== */
 @media (max-width: 600px) {
-  .section {
+  .page {
     height: auto;
     min-height: 100vh;
-    padding: 50px 0;
   }
 
   .about-profile-row {
@@ -240,7 +243,7 @@
   }
 
   .about-profile-card {
-    padding: 24px;
+    padding: 20px;
   }
 
   .timeline-line {
@@ -259,7 +262,7 @@
   }
 
   .project-row {
-    flex-direction: column !important;
+    flex-direction: column;
     text-align: center;
   }
 
@@ -269,6 +272,14 @@
   }
 
   .skills-card {
-    padding: 24px;
+    padding: 20px;
+  }
+
+  .page-2-history,
+  .page-2-skills,
+  .page-3-project,
+  .page-3-contact {
+    flex: none;
+    padding: 40px 0;
   }
 }
