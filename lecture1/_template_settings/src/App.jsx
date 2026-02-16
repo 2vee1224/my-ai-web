@@ -110,23 +110,21 @@ function AboutMe() {
                   미래의 <strong>웹디자이너</strong>가 될 사람 😋
                 </Typography>
                 <Box sx={{ display: 'flex', justifyContent: 'center', gap: 6 }}>
-                  <Typography variant="body2" sx={{ lineHeight: 2, color: '#555' }}>
+                  <Typography variant="body2" sx={{ lineHeight: 2, color: '#555', textAlign: 'left' }}>
                     호기심많은 예술가
                     <br />
                     낯을 좀 가리지만 친해지면
                     <br />
-                    ISFP 지고 매나 싫싫 없편
+                    ISFP 치고 꽤나
                     <br />
                     일할때 튀어나오는
-                    <br />
-                    <span style={{ color: '#9B8BB4', fontWeight: 600 }}>빠르고 계획적으로 일처리하는 능력자 🔥</span>
                   </Typography>
-                  <Typography variant="body2" sx={{ lineHeight: 2, color: '#9B8BB4', fontWeight: 500 }}>
+                  <Typography variant="body2" sx={{ lineHeight: 2, color: '#9B8BB4', fontWeight: 500, textAlign: 'left' }}>
                     ISFP
                     <br />
-                    재밌고 매력이 넘치는 성격
+                    재밌고 배려심 넘치는 성격
                     <br />
-                    성실 🔥한편
+                    성실✊한편
                     <br />
                     TJ 모먼트
                   </Typography>
