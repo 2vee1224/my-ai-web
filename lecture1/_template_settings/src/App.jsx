@@ -129,6 +129,18 @@ function AboutMe() {
                     TJ 모먼트
                   </Typography>
                 </Box>
+                <Box sx={{
+                  mt: 1.5,
+                  textAlign: 'center',
+                  bgcolor: '#cfd5e3',
+                  borderRadius: 2,
+                  py: 0.8,
+                  px: 3,
+                }}>
+                  <Typography variant="body2" sx={{ color: 'white', fontWeight: 600 }}>
+                    빠르고 계획적으로 일처리하는 능력자✌
+                  </Typography>
+                </Box>
               </Box>
             </Box>
           </Box>
