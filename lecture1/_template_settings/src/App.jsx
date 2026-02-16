@@ -32,13 +32,19 @@ function Navigation() {
       sx={{
         bgcolor: 'rgba(255,255,255,0.95)',
         borderBottom: '1px solid #eee',
-        maxWidth: '1200px',
+        maxWidth: { xs: '100%', md: '1200px' },
         left: '50%',
         transform: 'translateX(-50%)',
+        width: '100%',
         zIndex: 1000,
       }}
     >
-      <Toolbar sx={{ justifyContent: 'center', gap: 4, minHeight: '48px !important' }}>
+      <Toolbar sx={{
+        justifyContent: 'center',
+        gap: { xs: 0.5, sm: 4 },
+        minHeight: '48px !important',
+        px: { xs: 0, sm: 2 },
+      }}>
         {navItems.map((item) => (
           <Button
             key={item}
@@ -46,10 +52,12 @@ function Navigation() {
             sx={{
               color: '#333',
               fontFamily: '"Playfair Display", serif',
-              fontSize: '0.95rem',
+              fontSize: { xs: '0.7rem', sm: '0.95rem' },
               fontWeight: 500,
               letterSpacing: '0.05em',
               py: 0.5,
+              px: { xs: 0.8, sm: 2 },
+              minWidth: 'auto',
               '&:hover': { color: '#9B8BB4', bgcolor: 'transparent' },
             }}
           >
@@ -67,12 +75,13 @@ function SectionTitle({ children }) {
       variant="h4"
       sx={{
         textAlign: 'center',
-        mb: 2.5,
+        mb: { xs: 1.5, sm: 2.5 },
         color: '#5C4B7A',
         fontFamily: '"Playfair Display", serif',
         fontWeight: 700,
         letterSpacing: '0.1em',
         textTransform: 'uppercase',
+        fontSize: { xs: '1.5rem', sm: '2.125rem' },
       }}
     >
       {children}
@@ -83,7 +92,7 @@ function SectionTitle({ children }) {
 function AboutMe() {
   return (
     <Box id="about-me" className="page page-1">
-      <Box className="page-inner" sx={{ pt: '56px' }}>
+      <Box className="page-inner" sx={{ pt: '56px', px: { xs: 1, sm: 0 } }}>
         <Container maxWidth="md">
           <SectionTitle>About Me</SectionTitle>
 
@@ -109,7 +118,7 @@ function AboutMe() {
                   <br />
                   미래의 <strong>웹디자이너</strong>가 될 사람 😋
                 </Typography>
-                <Box sx={{ display: 'flex', justifyContent: 'center', gap: 6 }}>
+                <Box className="personality-columns">
                   <Typography variant="body2" sx={{ lineHeight: 2, color: '#555', textAlign: 'left' }}>
                     호기심많은 예술가
                     <br />

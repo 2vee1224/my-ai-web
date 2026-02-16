@@ -31,3 +31,10 @@ a {
   max-width: 1200px;
   margin: 0 auto;
 }
+
+/* 모바일에서 스크롤 스냅 해제 */
+@media (max-width: 768px) {
+  html {
+    scroll-snap-type: none;
+  }
+}

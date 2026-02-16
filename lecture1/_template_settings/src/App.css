@@ -230,29 +230,56 @@
   justify-content: center;
 }
 
-/* ===== Responsive ===== */
-@media (max-width: 600px) {
+/* ===== 모바일 성격 두 열 ===== */
+.personality-columns {
+  display: flex;
+  justify-content: center;
+  gap: 48px;
+}
+
+/* ===== Responsive (768px 이하) ===== */
+@media (max-width: 768px) {
   .page {
     height: auto;
-    min-height: 100vh;
+    min-height: auto;
+    overflow: visible;
+  }
+
+  .page-inner {
+    justify-content: flex-start;
+  }
+
+  /* About Me */
+  .about-profile-card {
+    padding: 16px;
   }
 
   .about-profile-row {
     flex-direction: column;
     align-items: center;
     text-align: center;
+    gap: 16px;
   }
 
   .profile-photo-placeholder {
-    width: 120px;
-    height: 120px;
-    min-width: 120px;
+    width: 100px;
+    height: 100px;
+    min-width: 100px;
   }
 
-  .about-profile-card {
-    padding: 20px;
+  .personality-columns {
+    flex-direction: column;
+    gap: 8px;
+    align-items: center;
   }
 
+  /* Favorites */
+  .favorite-icon-box {
+    width: 44px;
+    height: 44px;
+  }
+
+  /* History */
   .timeline-line {
     display: none;
   }
@@ -268,25 +295,39 @@
     display: none;
   }
 
+  .timeline-side {
+    gap: 10px;
+  }
+
+  /* Skills */
+  .skills-card {
+    padding: 16px;
+  }
+
+  /* Project */
   .project-row {
     flex-direction: column;
     text-align: center;
+    padding: 16px;
+    gap: 12px;
   }
 
   .project-preview-box {
     width: 100%;
     min-width: auto;
+    height: 100px;
   }
 
-  .skills-card {
-    padding: 20px;
-  }
-
+  /* 섹션 높이/패딩 */
   .page-2-history,
   .page-2-skills,
   .page-3-project,
   .page-3-contact {
     flex: none;
-    padding: 40px 0;
+    padding: 32px 0;
+  }
+
+  .page-3-contact {
+    padding: 24px 0;
   }
 }
