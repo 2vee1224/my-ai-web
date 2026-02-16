@@ -7,51 +7,35 @@ export default function Home() {
 
   return (
     <Box>
-      {/* Hero */}
+      {/* About Me */}
       <SectionBox
-        title="WELCOME"
-        description="여기는 Hero 섹션입니다. 메인 비주얼, 이름, 간단 소개가 들어갈 예정입니다."
+        id="about-me"
+        title="ABOUT ME"
+        description="여기는 About Me 섹션입니다. 간단한 자기소개가 들어갈 예정입니다."
         background="linear-gradient(180deg, #E8E0F0 0%, #F8F5FC 100%)"
       />
 
-      {/* About Me */}
+      {/* History */}
       <SectionBox
-        title="ABOUT ME"
-        description="여기는 About Me 섹션입니다. 간단한 자기소개와 '더 알아보기' 버튼이 들어갈 예정입니다."
+        id="history"
+        title="HISTORY"
+        description="여기는 History 섹션입니다. 간단한 경력사항 및 자격증이 들어갈 예정입니다."
         background="var(--color-bg-primary)"
-      >
-        <Box sx={{ mt: 3 }}>
-          <Button
-            variant="outlined"
-            onClick={() => navigate('/about')}
-            sx={{
-              color: 'var(--color-button-primary)',
-              borderColor: 'var(--color-button-primary)',
-              borderRadius: 8,
-              px: 4,
-              '&:hover': {
-                bgcolor: 'var(--color-button-hover)',
-                borderColor: 'var(--color-button-hover)',
-                color: 'white',
-              },
-            }}
-          >
-            더 알아보기
-          </Button>
-        </Box>
-      </SectionBox>
+      />
 
-      {/* Skill Tree */}
+      {/* Skills */}
       <SectionBox
-        title="SKILL TREE"
-        description="여기는 Skill Tree 섹션입니다. 기술 스택을 트리나 프로그레스바로 시각화할 예정입니다."
+        id="skills"
+        title="SKILLS"
+        description="여기는 Skills 섹션입니다. 기술 스택을 트리나 프로그레스바로 시각화할 예정입니다."
         background="linear-gradient(180deg, #E8EDF5 0%, #F0EDF7 100%)"
       />
 
-      {/* Projects */}
+      {/* Project */}
       <SectionBox
-        title="PROJECTS"
-        description="여기는 Projects 섹션입니다. 대표작 썸네일 3-4개와 '더 보기' 버튼이 들어갈 예정입니다."
+        id="project"
+        title="PROJECT"
+        description="여기는 Projects 섹션입니다. 대표작 썸네일 2개와 '더 보기' 버튼이 들어갈 예정입니다."
         background="var(--color-bg-primary)"
       >
         <Box sx={{ mt: 3 }}>
@@ -77,8 +61,9 @@ export default function Home() {
 
       {/* Contact */}
       <SectionBox
+        id="contact"
         title="CONTACT"
-        description="여기는 Contact 섹션입니다. 연락처, SNS, 간단한 메시지 폼이 들어갈 예정입니다."
+        description="여기는 Contact 섹션입니다. 이메일 폼이 들어갈 예정입니다."
         background="linear-gradient(180deg, #F0EDF7 0%, #E8E0F0 100%)"
       />
     </Box>

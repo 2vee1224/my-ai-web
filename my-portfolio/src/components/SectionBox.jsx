@@ -1,8 +1,8 @@
 import { Box, Container, Typography } from '@mui/material';
 
-export default function SectionBox({ title, description, background = 'var(--color-bg-primary)', children }) {
+export default function SectionBox({ id, title, description, background = 'var(--color-bg-primary)', children }) {
   return (
-    <Box sx={{ background, py: { xs: 6, md: 10 } }}>
+    <Box id={id} sx={{ background, py: { xs: 6, md: 10 } }}>
       <Container maxWidth="md">
         <Typography
           variant="h4"
