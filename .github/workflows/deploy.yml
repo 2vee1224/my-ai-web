@@ -27,11 +27,11 @@ jobs:
           node-version: 20
 
       - name: Install dependencies
-        working-directory: ./my-portfolio
+        working-directory: ./lecture1/_template_settings
         run: npm install
 
       - name: Build
-        working-directory: ./my-portfolio
+        working-directory: ./lecture1/_template_settings
         run: npm run build
 
       - name: Setup Pages
@@ -40,7 +40,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./my-portfolio/dist
+          path: ./lecture1/_template_settings/dist
 
   deploy:
     environment:

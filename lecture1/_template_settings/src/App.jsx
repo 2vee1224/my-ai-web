@@ -27,11 +27,15 @@ const scrollToSection = (sectionId) => {
 function Navigation() {
   return (
     <AppBar
-      position="sticky"
+      position="fixed"
       elevation={0}
       sx={{
-        bgcolor: 'white',
+        bgcolor: 'rgba(255,255,255,0.95)',
         borderBottom: '1px solid #eee',
+        maxWidth: '1200px',
+        left: '50%',
+        transform: 'translateX(-50%)',
+        zIndex: 1000,
       }}
     >
       <Toolbar sx={{ justifyContent: 'center', gap: 4 }}>
@@ -418,6 +422,7 @@ function Contact() {
 function Footer() {
   return (
     <Box
+      className="footer-section"
       sx={{
         bgcolor: '#5C4B7A',
         color: 'white',
