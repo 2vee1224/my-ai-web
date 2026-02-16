@@ -130,21 +130,21 @@ function AboutMe() {
                   </Typography>
                 </Box>
                 <Box sx={{ mt: 1.5, textAlign: 'center' }}>
-                  <Typography
+                  <Box
                     component="span"
-                    variant="body2"
                     sx={{
-                      color: 'white',
+                      color: '#fff',
                       fontWeight: 600,
-                      bgcolor: '#cfd5e3',
-                      borderRadius: 2,
-                      py: 0.6,
-                      px: 2,
-                      display: 'inline-block',
+                      fontSize: '0.875rem',
+                      backgroundColor: '#cfd5e3',
+                      borderRadius: '6px',
+                      padding: '5px 16px',
+                      display: 'inline',
+                      lineHeight: 2.2,
                     }}
                   >
                     빠르고 계획적으로 일처리하는 능력자✌
-                  </Typography>
+                  </Box>
                 </Box>
               </Box>
             </Box>
