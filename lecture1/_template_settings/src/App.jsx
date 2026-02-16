@@ -103,11 +103,11 @@ function AboutMe() {
               </Box>
               <Box className="profile-info">
                 <Typography variant="body2" sx={{ lineHeight: 1.8, color: '#555', textAlign: 'center', mb: 1.5 }}>
-                  추구미는 여러여리함<span style={{ color: '#9B8BB4' }}>💜</span>이지만 그렇지 못한편
+                  추구미는 여리여리함🎀이지만 그렇지 못한편
                   <br />
                   비전공자 출신으로 뒤늦게 처음부터 새로 시작했지만
                   <br />
-                  미래의 <strong>웹디자이너</strong>가 될 사람 😊
+                  미래의 <strong>웹디자이너</strong>가 될 사람 😋
                 </Typography>
                 <Box sx={{ display: 'flex', justifyContent: 'center', gap: 6 }}>
                   <Typography variant="body2" sx={{ lineHeight: 2, color: '#555' }}>
