@@ -1,0 +1,360 @@
+/* ===== Page (scroll snap unit) ===== */
+.page {
+  height: 1080px;
+  scroll-snap-align: start;
+  overflow: hidden;
+}
+
+.page-inner {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* ===== Page 1: About Me ===== */
+.page-1 {
+  background: linear-gradient(180deg, #E8E0F0 0%, #F8F5FC 100%);
+}
+
+.about-profile-card {
+  background: white;
+  border-radius: 16px;
+  padding: 24px 28px;
+  box-shadow: 0 4px 20px rgba(156, 139, 180, 0.15);
+  border: 1px solid #E8E0F0;
+}
+
+.about-profile-row {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+}
+
+.profile-photo-placeholder {
+  width: 130px;
+  height: 130px;
+  min-width: 130px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #E8E0F0, #D0C4E0);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 3px solid #B8A9C9;
+}
+
+.profile-info {
+  flex: 1;
+}
+
+/* ===== Personality columns ===== */
+.personality-columns {
+  display: flex;
+  justify-content: center;
+  gap: 48px;
+}
+
+/* ===== Favorites ===== */
+.favorite-card {
+  background: white !important;
+  border-radius: 12px !important;
+  border: 1px solid #E8E0F0;
+  transition: transform 0.3s, box-shadow 0.3s;
+  height: 100%;
+}
+
+.favorite-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(156, 139, 180, 0.2);
+}
+
+.favorite-icon-box {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: #F8F5FC;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 8px;
+  border: 2px solid #E8E0F0;
+}
+
+/* ===== Page 2: History(3) + Skills(2) ===== */
+.page-2 {
+  display: flex;
+  flex-direction: column;
+}
+
+.page-2-history {
+  flex: 3;
+  background: white;
+  display: flex;
+  align-items: center;
+  padding: 24px 0;
+}
+
+.page-2-skills {
+  flex: 2;
+  background: linear-gradient(180deg, #E8EDF5 0%, #F0EDF7 100%);
+  display: flex;
+  align-items: center;
+  padding: 20px 0;
+}
+
+.timeline-container {
+  position: relative;
+  padding: 8px 0;
+}
+
+.timeline-line {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: #D0C4E0;
+  transform: translateX(-50%);
+}
+
+.timeline-side {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.timeline-left {
+  text-align: right;
+  padding-right: 24px;
+}
+
+.timeline-right {
+  text-align: left;
+  padding-left: 24px;
+}
+
+.timeline-item {
+  position: relative;
+  padding: 10px 14px;
+  background: white;
+  border-radius: 10px;
+  border: 1px solid #E8E0F0;
+  box-shadow: 0 2px 8px rgba(156, 139, 180, 0.1);
+}
+
+.timeline-dot {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #B8A9C9;
+  border: 2px solid white;
+  box-shadow: 0 0 0 2px #B8A9C9;
+  top: 14px;
+}
+
+.timeline-left .timeline-dot {
+  right: -30px;
+}
+
+.timeline-right .timeline-dot {
+  left: -30px;
+}
+
+.skills-card {
+  background: white;
+  border-radius: 16px;
+  padding: 24px 28px;
+  box-shadow: 0 4px 20px rgba(156, 139, 180, 0.15);
+}
+
+.skill-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 5px 0;
+}
+
+.skill-icon {
+  width: 30px;
+  height: 30px;
+  min-width: 30px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ===== Page 3: Project(8.5) + Contact(1.5) ===== */
+.page-3 {
+  display: flex;
+  flex-direction: column;
+}
+
+.page-3-project {
+  flex: 8.5;
+  background: white;
+  display: flex;
+  align-items: center;
+  padding: 24px 0;
+}
+
+.page-3-contact {
+  flex: 1.5;
+  background: linear-gradient(180deg, #F0EDF7 0%, #E8E0F0 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.project-row {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 20px;
+  border-radius: 12px;
+  border: 1px solid #E8E0F0;
+  background: #FDFCFE;
+  transition: box-shadow 0.3s;
+}
+
+.project-row:hover {
+  box-shadow: 0 4px 16px rgba(156, 139, 180, 0.15);
+}
+
+.project-info {
+  flex: 1;
+}
+
+.project-preview-box {
+  width: 200px;
+  height: 120px;
+  min-width: 200px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #E8E0F0, #D0C4E0);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ==========================================================
+   모바일 전용 (768px 이하) - PC 레이아웃에 영향 없음
+   ========================================================== */
+@media (max-width: 768px) {
+  /* 페이지 고정 높이 해제 */
+  .page {
+    height: auto;
+    min-height: auto;
+    overflow: visible;
+  }
+
+  .page-inner {
+    justify-content: flex-start;
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+
+  /* 네비게이션 */
+  .nav-bar {
+    max-width: 100% !important;
+  }
+
+  .nav-toolbar {
+    gap: 4px !important;
+    padding-left: 4px !important;
+    padding-right: 4px !important;
+  }
+
+  .nav-button {
+    font-size: 0.72rem !important;
+    padding-left: 6px !important;
+    padding-right: 6px !important;
+    min-width: auto !important;
+  }
+
+  /* 섹션 타이틀 */
+  .section-title {
+    font-size: 1.4rem !important;
+    margin-bottom: 12px !important;
+  }
+
+  /* About Me */
+  .about-profile-card {
+    padding: 16px;
+  }
+
+  .about-profile-row {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 12px;
+  }
+
+  .profile-photo-placeholder {
+    width: 100px;
+    height: 100px;
+    min-width: 100px;
+  }
+
+  .personality-columns {
+    flex-direction: column;
+    gap: 4px;
+    align-items: center;
+    text-align: center;
+  }
+
+  .favorite-icon-box {
+    width: 44px;
+    height: 44px;
+  }
+
+  /* History / Skills 섹션 높이 */
+  .page-2-history,
+  .page-2-skills,
+  .page-3-project,
+  .page-3-contact {
+    flex: none;
+    padding: 28px 8px;
+  }
+
+  .timeline-line {
+    display: none;
+  }
+
+  .timeline-left,
+  .timeline-right {
+    text-align: left;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .timeline-dot {
+    display: none;
+  }
+
+  .timeline-side {
+    gap: 10px;
+  }
+
+  .skills-card {
+    padding: 16px;
+  }
+
+  /* Project */
+  .project-row {
+    flex-direction: column;
+    text-align: center;
+    padding: 16px;
+    gap: 12px;
+  }
+
+  .project-preview-box {
+    width: 100%;
+    min-width: auto;
+    height: 100px;
+  }
+
+  .page-3-contact {
+    padding: 20px 8px;
+  }
+}
