@@ -113,24 +113,21 @@ function AboutMe() {
                   미래의 <strong>웹디자이너</strong>가 될 사람 😋
                 </Typography>
                 <Box className="personality-columns">
-                  <Typography variant="body2" sx={{ lineHeight: 2, color: '#555', textAlign: 'left' }}>
-                    호기심많은 예술가
-                    <br />
-                    낯을 좀 가리지만 친해지면
-                    <br />
-                    ISFP 치고 꽤나
-                    <br />
-                    일할때 튀어나오는
-                  </Typography>
-                  <Typography variant="body2" sx={{ lineHeight: 2, color: '#9B8BB4', fontWeight: 500, textAlign: 'left' }}>
-                    ISFP
-                    <br />
-                    재밌고 배려심 넘치는 성격
-                    <br />
-                    성실✊한편
-                    <br />
-                    TJ 모먼트
-                  </Typography>
+                  {[
+                    ['호기심많은 예술가', 'ISFP'],
+                    ['낯을 좀 가리지만 친해지면', '재밌고 배려심 넘치는 성격'],
+                    ['ISFP 치고 꽤나', '성실✊한편'],
+                    ['일할때 튀어나오는', 'TJ 모먼트'],
+                  ].map(([left, right], i) => (
+                    <Box key={i} className="personality-pair">
+                      <Typography component="span" variant="body2" className="p-left" sx={{ lineHeight: 2, color: '#555' }}>
+                        {left}
+                      </Typography>
+                      <Typography component="span" variant="body2" className="p-right" sx={{ lineHeight: 2, color: '#9B8BB4', fontWeight: 500 }}>
+                        {right}
+                      </Typography>
+                    </Box>
+                  ))}
                 </Box>
                 <Box sx={{ mt: 1.5, textAlign: 'center' }}>
                   <Box

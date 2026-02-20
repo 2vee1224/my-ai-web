@@ -49,9 +49,22 @@
 
 /* ===== Personality columns ===== */
 .personality-columns {
-  display: flex;
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 0 48px;
   justify-content: center;
-  gap: 48px;
+}
+
+.personality-pair {
+  display: contents;
+}
+
+.p-left {
+  text-align: left;
+}
+
+.p-right {
+  text-align: left;
 }
 
 /* ===== Favorites ===== */
@@ -297,14 +310,22 @@
   }
 
   .personality-columns {
-    flex-direction: column;
-    gap: 0;
-    align-items: center;
+    display: block;
     text-align: center;
   }
 
-  .personality-columns .MuiTypography-root {
-    text-align: center !important;
+  .personality-pair {
+    display: block;
+    line-height: 2;
+  }
+
+  .p-left,
+  .p-right {
+    display: inline !important;
+  }
+
+  .p-left::after {
+    content: " ";
   }
 
   .favorite-icon-box {
