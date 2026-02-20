@@ -26,13 +26,27 @@ jobs:
         with:
           node-version: 20
 
-      - name: Install dependencies
+      - name: Install dependencies (portfolio)
         working-directory: ./lecture1/_template_settings
         run: npm install
 
-      - name: Build
+      - name: Build (portfolio)
         working-directory: ./lecture1/_template_settings
         run: npm run build
+
+      - name: Install dependencies (game community)
+        working-directory: ./lecture1/my-community
+        run: npm install
+
+      - name: Build (game community)
+        working-directory: ./lecture1/my-community
+        run: npm run build
+
+      - name: Prepare deploy structure
+        run: |
+          mkdir -p deploy/lecture1
+          cp -r ./lecture1/_template_settings/dist/. deploy/
+          cp -r ./lecture1/my-community/dist/. deploy/lecture1/
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
@@ -40,7 +54,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./lecture1/_template_settings/dist
+          path: ./deploy
 
   deploy:
     environment:
