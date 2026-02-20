@@ -14,12 +14,20 @@ import { supabase } from '../utils/supabase';
 
 const GAME_TAGS = ['롤', '오버워치', '배틀그라운드', '발로란트', '종합게임'];
 
+const CATEGORIES = [
+  { label: '리뷰', value: 'review' },
+  { label: '공략', value: 'guide' },
+  { label: 'Q&A', value: 'qna' },
+  { label: '자유게시판', value: 'general' },
+];
+
 function CreatePostPage() {
   const navigate = useNavigate();
   const { user } = useAuth();
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [gameTag, setGameTag] = useState('종합게임');
+  const [category, setCategory] = useState('general');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
@@ -36,6 +44,7 @@ function CreatePostPage() {
       title: title.trim(),
       content: content.trim(),
       game_name: gameTag,
+      category,
       user_id: user.id,
     }).select('id').single();
 
@@ -84,19 +93,35 @@ function CreatePostPage() {
           <Box component='form' onSubmit={handleSubmit} sx={{ display: 'flex', flexDirection: 'column', gap: 2.5 }}>
             { error && <Alert severity='error' sx={{ bgcolor: 'rgba(255,107,107,0.1)', color: '#ff6b6b', border: '1px solid rgba(255,107,107,0.3)' }}>{ error }</Alert> }
 
-            <TextField
-              select
-              label='게임 태그'
-              value={gameTag}
-              onChange={(e) => setGameTag(e.target.value)}
-              fullWidth
-              InputLabelProps={{ sx: { color: 'text.secondary' } }}
-              inputProps={{ sx: { color: 'text.primary' } }}
-            >
-              { GAME_TAGS.map((tag) => (
-                <MenuItem key={tag} value={tag}>{ tag }</MenuItem>
-              )) }
-            </TextField>
+            <Box sx={{ display: 'flex', gap: 2 }}>
+              <TextField
+                select
+                label='카테고리'
+                value={category}
+                onChange={(e) => setCategory(e.target.value)}
+                sx={{ flex: 1 }}
+                InputLabelProps={{ sx: { color: 'text.secondary' } }}
+                inputProps={{ sx: { color: 'text.primary' } }}
+              >
+                { CATEGORIES.map((cat) => (
+                  <MenuItem key={cat.value} value={cat.value}>{ cat.label }</MenuItem>
+                )) }
+              </TextField>
+
+              <TextField
+                select
+                label='게임 이름'
+                value={gameTag}
+                onChange={(e) => setGameTag(e.target.value)}
+                sx={{ flex: 1 }}
+                InputLabelProps={{ sx: { color: 'text.secondary' } }}
+                inputProps={{ sx: { color: 'text.primary' } }}
+              >
+                { GAME_TAGS.map((tag) => (
+                  <MenuItem key={tag} value={tag}>{ tag }</MenuItem>
+                )) }
+              </TextField>
+            </Box>
 
             <TextField
               label='제목'

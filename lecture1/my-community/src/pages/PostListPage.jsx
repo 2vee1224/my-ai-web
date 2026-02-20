@@ -5,7 +5,8 @@ import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
-import Chip from '@mui/material/Chip';
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
 import CircularProgress from '@mui/material/CircularProgress';
 import Fab from '@mui/material/Fab';
 import AddIcon from '@mui/icons-material/Add';
@@ -13,32 +14,53 @@ import PostCard from '../components/landing/PostCard';
 import useAuth from '../hooks/useAuth';
 import { supabase } from '../utils/supabase';
 
-const GAME_TAGS = ['전체', '롤', '오버워치', '배틀그라운드', '발로란트', '종합게임'];
+const CATEGORIES = [
+  { label: '전체', value: '' },
+  { label: '리뷰', value: 'review' },
+  { label: '공략', value: 'guide' },
+  { label: 'Q&A', value: 'qna' },
+  { label: '자유게시판', value: 'general' },
+];
+
+const GAME_LIST = ['전체', '롤', '오버워치', '배틀그라운드', '발로란트', '종합게임'];
+
+const GAME_COLORS = {
+  '전체': '#a0a0cc',
+  '롤': '#00f5ff',
+  '오버워치': '#ff6b00',
+  '배틀그라운드': '#39ff14',
+  '발로란트': '#ff2045',
+  '종합게임': '#bf00ff',
+};
 
 function PostListPage() {
   const navigate = useNavigate();
   const { user } = useAuth();
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [selectedTag, setSelectedTag] = useState('전체');
+  const [selectedCategory, setSelectedCategory] = useState('');
+  const [selectedGame, setSelectedGame] = useState('전체');
 
   useEffect(() => {
     fetchPosts();
-  }, [selectedTag]);
+  }, [selectedCategory, selectedGame]);
 
   async function fetchPosts() {
     setLoading(true);
     let query = supabase
       .from('posts')
       .select(`
-        id, title, game_name, likes_count, created_at, user_id,
+        id, title, game_name, category, likes_count, created_at, user_id,
         users(nickname),
         comments(count)
       `)
       .order('created_at', { ascending: false });
 
-    if (selectedTag !== '전체') {
-      query = query.eq('game_name', selectedTag);
+    if (selectedCategory) {
+      query = query.eq('category', selectedCategory);
+    }
+    if (selectedGame !== '전체') {
+      query = query.eq('game_name', selectedGame);
     }
 
     const { data, error } = await query;
@@ -52,6 +74,10 @@ function PostListPage() {
     setLoading(false);
   }
 
+  function handleCategoryChange(_, newValue) {
+    setSelectedCategory(newValue);
+  }
+
   return (
     <Box sx={{ width: '100%', minHeight: '100vh', background: '#060610', pb: 8 }}>
       {/* 히어로 배너 */}
@@ -59,7 +85,7 @@ function PostListPage() {
         sx={{
           background: 'linear-gradient(180deg, rgba(0,245,255,0.05) 0%, transparent 100%)',
           borderBottom: '1px solid rgba(0,245,255,0.1)',
-          py: { xs: 4, md: 6 },
+          py: { xs: 3, md: 5 },
           textAlign: 'center',
         }}
       >
@@ -82,54 +108,212 @@ function PostListPage() {
         </Typography>
       </Box>
 
-      <Container maxWidth='lg' sx={{ pt: 4, px: { xs: 2, md: 3 } }}>
-        {/* 태그 필터 */}
-        <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap', mb: 3 }}>
-          { GAME_TAGS.map((tag) => (
-            <Chip
-              key={tag}
-              label={tag}
-              onClick={() => setSelectedTag(tag)}
-              sx={{
-                cursor: 'pointer',
+      {/* 카테고리 탭 (상단 고정) */}
+      <Box
+        sx={{
+          borderBottom: '1px solid rgba(0,245,255,0.1)',
+          bgcolor: 'rgba(14,14,31,0.9)',
+          backdropFilter: 'blur(8px)',
+          position: 'sticky',
+          top: 56,
+          zIndex: 10,
+        }}
+      >
+        <Container maxWidth='lg'>
+          <Tabs
+            value={selectedCategory}
+            onChange={handleCategoryChange}
+            textColor='inherit'
+            variant='scrollable'
+            scrollButtons='auto'
+            sx={{
+              '& .MuiTabs-indicator': { bgcolor: '#00f5ff', height: 2 },
+              '& .MuiTab-root': {
+                color: '#a0a0cc',
                 fontWeight: 600,
-                bgcolor: selectedTag === tag ? 'rgba(0,245,255,0.15)' : 'transparent',
-                color: selectedTag === tag ? '#00f5ff' : 'text.secondary',
-                border: selectedTag === tag ? '1px solid #00f5ff' : '1px solid rgba(255,255,255,0.1)',
-                '&:hover': { bgcolor: 'rgba(0,245,255,0.1)', color: '#00f5ff' },
-              }}
-            />
-          )) }
-        </Box>
+                fontSize: { xs: '0.8rem', md: '0.9rem' },
+                minWidth: { xs: 70, md: 90 },
+                letterSpacing: '0.02em',
+                '&.Mui-selected': { color: '#00f5ff' },
+                '&:hover': { color: '#e0e0ff' },
+              },
+            }}
+          >
+            { CATEGORIES.map((cat) => (
+              <Tab key={cat.value} label={cat.label} value={cat.value} />
+            )) }
+          </Tabs>
+        </Container>
+      </Box>
 
-        {/* 게시물 목록 */}
-        { loading ? (
-          <Box sx={{ display: 'flex', justifyContent: 'center', py: 8 }}>
-            <CircularProgress sx={{ color: '#00f5ff' }} />
+      {/* 본문: 좌측 게임 사이드바 + 우측 게시물 */}
+      <Container maxWidth='lg' sx={{ pt: 4, px: { xs: 2, md: 3 } }}>
+        <Box sx={{ display: 'flex', gap: 3, alignItems: 'flex-start' }}>
+
+          {/* 좌측 게임 필터 사이드바 (데스크톱) */}
+          <Box
+            sx={{
+              width: 180,
+              flexShrink: 0,
+              display: { xs: 'none', md: 'block' },
+              position: 'sticky',
+              top: 112,
+            }}
+          >
+            <Box
+              sx={{
+                bgcolor: 'rgba(14,14,31,0.9)',
+                border: '1px solid rgba(0,245,255,0.12)',
+                borderRadius: 2,
+                overflow: 'hidden',
+              }}
+            >
+              {/* 사이드바 헤더 */}
+              <Box
+                sx={{
+                  px: 2,
+                  py: 1.5,
+                  borderBottom: '1px solid rgba(0,245,255,0.1)',
+                  bgcolor: 'rgba(0,245,255,0.05)',
+                }}
+              >
+                <Typography
+                  variant='caption'
+                  sx={{
+                    color: '#00f5ff',
+                    fontWeight: 700,
+                    letterSpacing: '0.12em',
+                    textTransform: 'uppercase',
+                    fontFamily: '"Rajdhani", sans-serif',
+                  }}
+                >
+                  게임
+                </Typography>
+              </Box>
+
+              {/* 게임 목록 */}
+              { GAME_LIST.map((game) => {
+                const isSelected = selectedGame === game;
+                const color = GAME_COLORS[game] || '#a0a0cc';
+                return (
+                  <Box
+                    key={game}
+                    onClick={() => setSelectedGame(game)}
+                    sx={{
+                      px: 2,
+                      py: 1.2,
+                      cursor: 'pointer',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: 1.5,
+                      bgcolor: isSelected ? `${color}18` : 'transparent',
+                      borderLeft: isSelected ? `3px solid ${color}` : '3px solid transparent',
+                      transition: 'all 0.15s ease',
+                      '&:hover': {
+                        bgcolor: `${color}10`,
+                        borderLeftColor: color,
+                      },
+                    }}
+                  >
+                    <Box
+                      sx={{
+                        width: 7,
+                        height: 7,
+                        borderRadius: '50%',
+                        bgcolor: isSelected ? color : 'rgba(160,160,204,0.35)',
+                        flexShrink: 0,
+                        boxShadow: isSelected ? `0 0 6px ${color}` : 'none',
+                        transition: 'all 0.15s ease',
+                      }}
+                    />
+                    <Typography
+                      variant='body2'
+                      sx={{
+                        color: isSelected ? color : '#a0a0cc',
+                        fontWeight: isSelected ? 700 : 400,
+                        fontSize: '0.85rem',
+                        transition: 'color 0.15s ease',
+                      }}
+                    >
+                      { game }
+                    </Typography>
+                  </Box>
+                );
+              }) }
+            </Box>
           </Box>
-        ) : posts.length === 0 ? (
-          <Box sx={{ textAlign: 'center', py: 8 }}>
-            <Typography variant='body1' sx={{ color: 'text.secondary', mb: 3 }}>
-              아직 게시물이 없습니다. 첫 번째 글을 작성해보세요!
-            </Typography>
-            { user && (
-              <Button variant='contained' onClick={() => navigate('/posts/create')}>
-                글쓰기
-              </Button>
+
+          {/* 본문 우측 영역 */}
+          <Box sx={{ flex: 1, minWidth: 0 }}>
+            {/* 모바일 게임 필터 (수평 스크롤 칩) */}
+            <Box
+              sx={{
+                display: { xs: 'flex', md: 'none' },
+                gap: 1,
+                overflowX: 'auto',
+                pb: 1.5,
+                mb: 2,
+                '&::-webkit-scrollbar': { display: 'none' },
+              }}
+            >
+              { GAME_LIST.map((game) => {
+                const isSelected = selectedGame === game;
+                const color = GAME_COLORS[game] || '#a0a0cc';
+                return (
+                  <Box
+                    key={game}
+                    onClick={() => setSelectedGame(game)}
+                    sx={{
+                      px: 1.5,
+                      py: 0.5,
+                      flexShrink: 0,
+                      borderRadius: 1,
+                      cursor: 'pointer',
+                      border: isSelected ? `1px solid ${color}` : '1px solid rgba(255,255,255,0.1)',
+                      bgcolor: isSelected ? `${color}20` : 'transparent',
+                      color: isSelected ? color : '#a0a0cc',
+                      fontSize: '0.8rem',
+                      fontWeight: isSelected ? 700 : 400,
+                      whiteSpace: 'nowrap',
+                      transition: 'all 0.15s ease',
+                    }}
+                  >
+                    { game }
+                  </Box>
+                );
+              }) }
+            </Box>
+
+            {/* 게시물 목록 */}
+            { loading ? (
+              <Box sx={{ display: 'flex', justifyContent: 'center', py: 8 }}>
+                <CircularProgress sx={{ color: '#00f5ff' }} />
+              </Box>
+            ) : posts.length === 0 ? (
+              <Box sx={{ textAlign: 'center', py: 8 }}>
+                <Typography variant='body1' sx={{ color: 'text.secondary', mb: 3 }}>
+                  아직 게시물이 없습니다. 첫 번째 글을 작성해보세요!
+                </Typography>
+                { user && (
+                  <Button variant='contained' onClick={() => navigate('/posts/create')}>
+                    글쓰기
+                  </Button>
+                ) }
+              </Box>
+            ) : (
+              <Grid container spacing={2}>
+                { posts.map((post) => (
+                  <Grid key={post.id} size={{ xs: 12, sm: 6, lg: 4 }}>
+                    <PostCard post={post} />
+                  </Grid>
+                )) }
+              </Grid>
             ) }
           </Box>
-        ) : (
-          <Grid container spacing={2}>
-            { posts.map((post) => (
-              <Grid key={post.id} size={{ xs: 12, sm: 6, md: 4 }}>
-                <PostCard post={post} />
-              </Grid>
-            )) }
-          </Grid>
-        ) }
+        </Box>
       </Container>
 
-      {/* 모바일 글쓰기 FAB */}
+      {/* 글쓰기 FAB */}
       { user && (
         <Fab
           color='primary'
