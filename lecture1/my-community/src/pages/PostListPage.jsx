@@ -284,6 +284,31 @@ function PostListPage() {
               }) }
             </Box>
 
+            {/* 글쓰기 버튼 + 게시물 수 */}
+            <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
+              <Typography variant='body2' sx={{ color: '#a0a0cc' }}>
+                { loading ? '' : `게시물 ${posts.length}개` }
+              </Typography>
+              <Button
+                variant='contained'
+                size='small'
+                startIcon={<AddIcon />}
+                onClick={() => navigate(user ? '/posts/create' : '/login')}
+                sx={{
+                  bgcolor: '#00f5ff',
+                  color: '#000',
+                  fontWeight: 700,
+                  fontSize: '0.85rem',
+                  '&:hover': {
+                    bgcolor: '#6effff',
+                    boxShadow: '0 0 14px rgba(0,245,255,0.5)',
+                  },
+                }}
+              >
+                글쓰기
+              </Button>
+            </Box>
+
             {/* 게시물 목록 */}
             { loading ? (
               <Box sx={{ display: 'flex', justifyContent: 'center', py: 8 }}>
