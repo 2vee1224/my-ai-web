@@ -34,13 +34,19 @@ jobs:
         working-directory: ./lecture1/my-community
         run: npm run build
 
+      - name: Prepare deploy structure
+        run: |
+          mkdir -p deploy/lecture1
+          cp -r ./lecture1/my-community/dist/. deploy/lecture1/
+          echo '<meta http-equiv="refresh" content="0; url=lecture1/">' > deploy/index.html
+
       - name: Setup Pages
         uses: actions/configure-pages@v4
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./lecture1/my-community/dist
+          path: ./deploy
 
   deploy:
     environment:
