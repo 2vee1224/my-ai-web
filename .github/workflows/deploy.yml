@@ -27,18 +27,12 @@ jobs:
           node-version: 20
 
       - name: Install dependencies
-        working-directory: ./lecture1/my-community
+        working-directory: ./lecture1/_template_settings
         run: npm install
 
       - name: Build
-        working-directory: ./lecture1/my-community
+        working-directory: ./lecture1/_template_settings
         run: npm run build
-
-      - name: Prepare deploy structure
-        run: |
-          mkdir -p deploy/lecture1
-          cp -r ./lecture1/my-community/dist/. deploy/lecture1/
-          echo '<meta http-equiv="refresh" content="0; url=lecture1/">' > deploy/index.html
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
@@ -46,7 +40,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./deploy
+          path: ./lecture1/_template_settings/dist
 
   deploy:
     environment:
