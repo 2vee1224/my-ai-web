@@ -297,17 +297,14 @@
   }
 
   .personality-columns {
-    display: block !important;
-    text-align: center !important;
+    flex-direction: column;
+    gap: 0;
+    align-items: center;
+    text-align: center;
   }
 
   .personality-columns .MuiTypography-root {
-    display: inline !important;
     text-align: center !important;
-  }
-
-  .personality-columns br {
-    display: none;
   }
 
   .favorite-icon-box {
