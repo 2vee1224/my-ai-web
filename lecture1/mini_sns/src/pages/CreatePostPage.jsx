@@ -11,6 +11,7 @@ import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import Alert from '@mui/material/Alert';
 import CardMedia from '@mui/material/CardMedia';
+import CircularProgress from '@mui/material/CircularProgress';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
 import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
@@ -18,8 +19,19 @@ import { supabase } from '../utils/supabase';
 
 const THEMES = ['힐링', '맛집', '데이트', '혼자여행', '가족여행', '액티비티', '문화'];
 
+const UNSPLASH_ACCESS_KEY = 'ix5TXvHH7a9o8jT4awwy-S2hG2sL9dIUiDW7w2qWMv4';
+
 const UNSPLASH_KEYWORDS = [
-  '여행', '바다', '산', '카페', '도시', '자연', '음식', '일몰', '거리', '숙소',
+  { label: '여행', query: 'travel' },
+  { label: '바다', query: 'ocean beach' },
+  { label: '산', query: 'mountain hiking' },
+  { label: '카페', query: 'cafe coffee' },
+  { label: '도시', query: 'city urban' },
+  { label: '자연', query: 'nature landscape' },
+  { label: '음식', query: 'food restaurant' },
+  { label: '일몰', query: 'sunset golden hour' },
+  { label: '거리', query: 'street alley' },
+  { label: '숙소', query: 'hotel resort' },
 ];
 
 /**
@@ -40,6 +52,7 @@ function CreatePostPage({ user, profile }) {
   const [region, setRegion] = useState('국내');
   const [selectedThemes, setSelectedThemes] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [imageLoading, setImageLoading] = useState(false);
   const [error, setError] = useState('');
 
   /** 테마 토글 */
@@ -49,10 +62,25 @@ function CreatePostPage({ user, profile }) {
     );
   };
 
-  /** Unsplash 랜덤 이미지 */
-  const getRandomUnsplashImage = (keyword) => {
-    const seed = Math.floor(Math.random() * 1000);
-    setImageUrl(`https://picsum.photos/seed/${seed}/800/600`);
+  /** Unsplash API로 랜덤 이미지 가져오기 */
+  const getRandomUnsplashImage = async (query) => {
+    setImageLoading(true);
+    setImageUrl('');
+    try {
+      const res = await fetch(
+        `https://api.unsplash.com/photos/random?query=${encodeURIComponent(query)}&orientation=landscape&client_id=${UNSPLASH_ACCESS_KEY}`
+      );
+      if (!res.ok) throw new Error('Unsplash 요청 실패');
+      const data = await res.json();
+      setImageUrl(data.urls.regular);
+    } catch (err) {
+      console.error('Unsplash 이미지 로드 실패:', err);
+      /** 실패 시 picsum 폴백 */
+      const seed = Math.floor(Math.random() * 1000);
+      setImageUrl(`https://picsum.photos/seed/${seed}/800/600`);
+    } finally {
+      setImageLoading(false);
+    }
   };
 
   /** 게시물 작성 */
@@ -149,7 +177,12 @@ function CreatePostPage({ user, profile }) {
             position: 'relative',
           }}
         >
-          { imageUrl ? (
+          { imageLoading ? (
+            <Box sx={{ textAlign: 'center', color: '#87CEEB' }}>
+              <CircularProgress sx={{ color: '#87CEEB', mb: 1 }} />
+              <Typography variant='body2' sx={{ color: '#aaa' }}>Unsplash에서 불러오는 중...</Typography>
+            </Box>
+          ) : imageUrl ? (
             <CardMedia
               component='img'
               image={ imageUrl }
@@ -160,7 +193,7 @@ function CreatePostPage({ user, profile }) {
           ) : (
             <Box sx={{ textAlign: 'center', color: '#aaa' }}>
               <AddPhotoAlternateIcon sx={{ fontSize: 48, mb: 1 }} />
-              <Typography variant='body2'>이미지 URL을 입력하거나<br />랜덤 이미지를 선택하세요</Typography>
+              <Typography variant='body2'>이미지 URL을 입력하거나<br />아래 키워드로 Unsplash 이미지를 선택하세요</Typography>
             </Box>
           ) }
         </Box>
@@ -181,16 +214,17 @@ function CreatePostPage({ user, profile }) {
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5, mb: 1 }}>
             <AutoAwesomeIcon sx={{ fontSize: 16, color: '#87CEEB' }} />
             <Typography variant='caption' sx={{ color: '#888', fontWeight: 600 }}>
-              랜덤 이미지 선택
+              Unsplash 랜덤 이미지 선택
             </Typography>
           </Box>
           <Box sx={{ display: 'flex', gap: 0.8, flexWrap: 'wrap' }}>
             { UNSPLASH_KEYWORDS.map((kw) => (
               <Chip
-                key={ kw }
-                label={ kw }
+                key={ kw.label }
+                label={ kw.label }
                 size='small'
-                onClick={ () => getRandomUnsplashImage(kw) }
+                disabled={ imageLoading }
+                onClick={ () => getRandomUnsplashImage(kw.query) }
                 sx={{
                   bgcolor: '#EFF8FF',
                   color: '#5BA8C9',
@@ -198,6 +232,7 @@ function CreatePostPage({ user, profile }) {
                   fontSize: '0.75rem',
                   cursor: 'pointer',
                   '&:hover': { bgcolor: '#87CEEB', color: '#fff' },
+                  '&.Mui-disabled': { opacity: 0.5 },
                 }}
               />
             )) }
