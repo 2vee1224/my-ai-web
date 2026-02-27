@@ -114,7 +114,7 @@ function App() {
             path='/edit-profile'
             element={
               <PrivateRoute user={ user }>
-                <EditProfilePage user={ user } profile={ profile } onRefetch={ refetchProfile } />
+                <EditProfilePage user={ user } profile={ profile } onRefetch={ refetchProfile } onSignOut={ signOut } />
               </PrivateRoute>
             }
           />

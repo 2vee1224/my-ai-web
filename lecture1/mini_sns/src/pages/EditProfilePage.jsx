@@ -24,7 +24,7 @@ import { supabase } from '../utils/supabase';
  * Example usage:
  * <EditProfilePage user={user} profile={profile} onRefetch={refetchProfile} />
  */
-function EditProfilePage({ user, profile, onRefetch }) {
+function EditProfilePage({ user, profile, onRefetch, onSignOut }) {
   const navigate = useNavigate();
   const [form, setForm] = useState({
     displayName: profile?.display_name || '',
@@ -182,8 +182,20 @@ function EditProfilePage({ user, profile, onRefetch }) {
           placeholder='자신을 소개해보세요 (선택)'
           inputProps={{ maxLength: 150 }}
           helperText={ `${form.bio.length}/150` }
-          sx={{ mb: 2.5 }}
+          sx={{ mb: 4 }}
         />
+
+        {/* 로그아웃 */}
+        <Box sx={{ borderTop: '1px solid #F0F8FF', pt: 3 }}>
+          <Button
+            variant='outlined'
+            fullWidth
+            onClick={ onSignOut }
+            sx={{ borderColor: '#ddd', color: '#aaa', borderRadius: 20, py: 1 }}
+          >
+            로그아웃
+          </Button>
+        </Box>
       </Container>
     </Box>
   );

@@ -115,22 +115,15 @@ function MyPage({ user, profile, onSignOut }) {
               )) }
             </Box>
 
-            {/* 프로필 수정 + 로그아웃 */}
-            <Box sx={{ display: 'flex', gap: 1, mt: 2 }}>
+            {/* 프로필 수정 */}
+            <Box sx={{ display: 'flex', justifyContent: 'center', mt: 2 }}>
               <Button
                 variant='outlined'
-                fullWidth
+                size='small'
                 onClick={ () => navigate('/edit-profile') }
-                sx={{ borderColor: '#87CEEB', color: '#5BA8C9', borderRadius: 20 }}
+                sx={{ borderColor: '#87CEEB', color: '#5BA8C9', borderRadius: 20, px: 3, fontSize: '0.8rem' }}
               >
                 프로필 수정
-              </Button>
-              <Button
-                variant='outlined'
-                onClick={ onSignOut }
-                sx={{ borderColor: '#ddd', color: '#888', borderRadius: 20, minWidth: 80 }}
-              >
-                로그아웃
               </Button>
             </Box>
           </Box>
