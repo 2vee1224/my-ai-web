@@ -59,21 +59,15 @@ function RegisterPage() {
 
     setLoading(true);
     try {
-      const { data, error: authError } = await supabase.auth.signUp({
+      /** username을 metadata로 전달 → DB 트리거가 sns_users 자동 생성 */
+      const { error: authError } = await supabase.auth.signUp({
         email: form.email,
         password: form.password,
+        options: {
+          data: { username: form.username },
+        },
       });
       if (authError) throw authError;
-
-      /** sns_users 프로필 생성 */
-      if (data.user) {
-        const { error: profileError } = await supabase.from('sns_users').insert({
-          id: data.user.id,
-          username: form.username,
-          display_name: form.username,
-        });
-        if (profileError) throw profileError;
-      }
 
       navigate('/');
     } catch (err) {
