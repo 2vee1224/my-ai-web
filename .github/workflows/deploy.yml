@@ -42,11 +42,20 @@ jobs:
         working-directory: ./lecture1/my-community
         run: npm run build
 
+      - name: Install dependencies (mini sns)
+        working-directory: ./lecture1/mini_sns
+        run: npm install
+
+      - name: Build (mini sns)
+        working-directory: ./lecture1/mini_sns
+        run: npm run build
+
       - name: Prepare deploy structure
         run: |
-          mkdir -p deploy/lecture1
+          mkdir -p deploy/lecture1/mini_sns
           cp -r ./lecture1/_template_settings/dist/. deploy/
           cp -r ./lecture1/my-community/dist/. deploy/lecture1/
+          cp -r ./lecture1/mini_sns/dist/. deploy/lecture1/mini_sns/
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
