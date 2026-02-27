@@ -360,22 +360,22 @@ function ProjectAndContact() {
   const projects = [
     {
       title: '공차 카페 홈페이지 리디자인',
-      tool: '사용툴 : Ps',
+      tool: '사용툴 : Ps, VS Code, Claude Ai',
       detail: '기여도 100%\n기획 3일 / 작업 4주 소요',
     },
     {
       title: '자스민벨 쇼핑몰 홈페이지 리디자인',
-      tool: '사용툴 : Ps',
+      tool: '사용툴 : Ps, VS Code, Claude Ai',
       detail: '기여도 100%\n기획 3일 / 작업 4주 소요',
     },
     {
       title: 'Game Hub - 게임 커뮤니티',
-      tool: '사용툴 : VS CODE, Claude Ai',
+      tool: '사용툴 : React · Vite · MUI, VS Code, Claude Ai',
       detail: '기여도 100%\n기획 1일 / 작업 1일 소요',
     },
     {
       title: 'Travel Log - 여행 SNS',
-      tool: '사용툴 : VS CODE, Claude Ai',
+      tool: '사용툴 : React · Vite · MUI · Supabase, VS Code, Claude Ai',
       detail: '기여도 100%\n기획 1일 / 작업 1일 소요',
     },
   ];
@@ -386,26 +386,47 @@ function ProjectAndContact() {
       <Box className="page-3-project">
         <Container maxWidth="md">
           <SectionTitle>Project</SectionTitle>
-          <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
+          <Grid container spacing={3}>
             {projects.map((project, i) => (
-              <Box key={i} className="project-row">
-                <Box className="project-preview-box">
-                  <Typography sx={{ color: '#ccc', fontSize: '0.8rem' }}>Preview</Typography>
+              <Grid size={{ xs: 12, sm: 6 }} key={i}>
+                <Box
+                  sx={{
+                    borderRadius: '12px',
+                    border: '1px solid #E8E0F0',
+                    background: '#FDFCFE',
+                    overflow: 'hidden',
+                    transition: 'box-shadow 0.3s',
+                    height: '100%',
+                    '&:hover': { boxShadow: '0 4px 16px rgba(156,139,180,0.15)' },
+                  }}
+                >
+                  <Box
+                    sx={{
+                      width: '100%',
+                      height: 130,
+                      background: 'linear-gradient(135deg, #E8E0F0, #D0C4E0)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                    }}
+                  >
+                    <Typography sx={{ color: '#ccc', fontSize: '0.8rem' }}>Preview</Typography>
+                  </Box>
+                  <Box sx={{ p: 2 }}>
+                    <Typography variant="body1" sx={{ fontWeight: 600, mb: 0.5 }}>
+                      {project.title}
+                    </Typography>
+                    <Typography variant="body2" sx={{ color: '#888' }}>
+                      {project.tool}
+                    </Typography>
+                    <Typography variant="caption" sx={{ color: '#999', whiteSpace: 'pre-line', mt: 0.5, display: 'block' }}>
+                      {project.detail}
+                    </Typography>
+                  </Box>
                 </Box>
-                <Box className="project-info">
-                  <Typography variant="body1" sx={{ fontWeight: 600, mb: 0.5 }}>
-                    {project.title}
-                  </Typography>
-                  <Typography variant="body2" sx={{ color: '#888' }}>
-                    {project.tool}
-                  </Typography>
-                  <Typography variant="caption" sx={{ color: '#999', whiteSpace: 'pre-line', mt: 0.5, display: 'block' }}>
-                    {project.detail}
-                  </Typography>
-                </Box>
-              </Box>
+              </Grid>
             ))}
-          </Box>
+          </Grid>
         </Container>
       </Box>
 
