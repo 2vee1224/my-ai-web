@@ -15,8 +15,6 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import SportsEsportsIcon from '@mui/icons-material/SportsEsports';
 import MovieIcon from '@mui/icons-material/Movie';
 import FlightIcon from '@mui/icons-material/Flight';
-import OpenInNewIcon from '@mui/icons-material/OpenInNew';
-import FlightTakeoffIcon from '@mui/icons-material/FlightTakeoff';
 import './App.css';
 
 const navItems = ['About me', 'History', 'Skills', 'Project', 'Contect'];
@@ -372,21 +370,13 @@ function ProjectAndContact() {
     },
     {
       title: 'Game Hub - 게임 커뮤니티',
-      tool: '사용툴 : React + Vite + MUI',
-      detail: '기여도 100%\n게임 정보 공유 커뮤니티 웹 앱',
-      url: 'https://2vee1224.github.io/my-ai-web/lecture1/',
-      previewBg: 'linear-gradient(135deg, #1a1a2e, #16213e)',
-      previewIcon: <SportsEsportsIcon sx={{ fontSize: 40, color: '#4ECDC4' }} />,
-      previewLabel: 'Game Hub',
+      tool: '사용툴 : VS CODE, Claude Ai',
+      detail: '기여도 100%\n기획 1일 / 작업 1일 소요',
     },
     {
       title: 'Travel Log - 여행 SNS',
-      tool: '사용툴 : React + Vite + MUI + Supabase',
-      detail: '기여도 100%\n여행 기록 공유 SNS 앱',
-      url: 'https://2vee1224.github.io/my-ai-web/lecture1/mini_sns/',
-      previewBg: 'linear-gradient(135deg, #87CEEB, #98FB98)',
-      previewIcon: <FlightTakeoffIcon sx={{ fontSize: 40, color: '#fff' }} />,
-      previewLabel: 'Travel Log',
+      tool: '사용툴 : VS CODE, Claude Ai',
+      detail: '기여도 100%\n기획 1일 / 작업 1일 소요',
     },
   ];
 
@@ -398,36 +388,14 @@ function ProjectAndContact() {
           <SectionTitle>Project</SectionTitle>
           <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
             {projects.map((project, i) => (
-              <Box
-                key={i}
-                className="project-row"
-                onClick={ () => project.url && window.open(project.url, '_blank') }
-                sx={{ cursor: project.url ? 'pointer' : 'default' }}
-              >
-                <Box
-                  className="project-preview-box"
-                  sx={ project.previewBg ? { background: project.previewBg, flexDirection: 'column', gap: 0.5 } : {} }
-                >
-                  { project.previewIcon ? (
-                    <>
-                      { project.previewIcon }
-                      <Typography sx={{ color: '#fff', fontSize: '0.75rem', fontWeight: 700, mt: 0.5 }}>
-                        { project.previewLabel }
-                      </Typography>
-                    </>
-                  ) : (
-                    <Typography sx={{ color: '#ccc', fontSize: '0.8rem' }}>Preview</Typography>
-                  ) }
+              <Box key={i} className="project-row">
+                <Box className="project-preview-box">
+                  <Typography sx={{ color: '#ccc', fontSize: '0.8rem' }}>Preview</Typography>
                 </Box>
                 <Box className="project-info">
-                  <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 0.5 }}>
-                    <Typography variant="body1" sx={{ fontWeight: 600 }}>
-                      {project.title}
-                    </Typography>
-                    { project.url && (
-                      <OpenInNewIcon sx={{ fontSize: 16, color: '#B8A9C9' }} />
-                    ) }
-                  </Box>
+                  <Typography variant="body1" sx={{ fontWeight: 600, mb: 0.5 }}>
+                    {project.title}
+                  </Typography>
                   <Typography variant="body2" sx={{ color: '#888' }}>
                     {project.tool}
                   </Typography>
