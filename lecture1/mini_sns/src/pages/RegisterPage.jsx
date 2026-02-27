@@ -14,7 +14,7 @@ import { supabase } from '../utils/supabase';
 
 function RegisterPage() {
   const navigate = useNavigate();
-  const [form, setForm] = useState({ email: '', password: '', confirmPassword: '', username: '', displayName: '' });
+  const [form, setForm] = useState({ email: '', password: '', confirmPassword: '', username: '' });
   const [error, setError] = useState('');
   const [usernameStatus, setUsernameStatus] = useState(''); // 'available' | 'taken' | ''
   const [loading, setLoading] = useState(false);
@@ -70,7 +70,7 @@ function RegisterPage() {
         const { error: profileError } = await supabase.from('sns_users').insert({
           id: data.user.id,
           username: form.username,
-          display_name: form.displayName || form.username,
+          display_name: form.username,
         });
         if (profileError) throw profileError;
       }
@@ -181,14 +181,6 @@ function RegisterPage() {
             </Button>
           </Box>
 
-          <TextField
-            label='표시 이름'
-            fullWidth
-            value={ form.displayName }
-            onChange={ handleChange('displayName') }
-            placeholder='닉네임과 다른 표시 이름 (선택)'
-            sx={{ mb: 2 }}
-          />
           <TextField
             label='비밀번호 (6자 이상)'
             type='password'
