@@ -89,66 +89,115 @@ function AboutMe() {
   return (
     <Box id="about-me" className="page page-1">
       <Box className="page-inner" sx={{ pt: '56px' }}>
-        <Container maxWidth="md">
+        <Container maxWidth="lg">
           <SectionTitle>About Me</SectionTitle>
 
-          {/* Profile area */}
-          <Box className="about-profile-card">
-            <Box sx={{ textAlign: 'center', mb: 1 }}>
-              <Typography variant="h6" sx={{ fontWeight: 700 }}>
-                임여진 <Typography component="span" sx={{ fontWeight: 400, color: '#888' }}>/ Limyeojin</Typography>
-              </Typography>
-              <Typography variant="body2" sx={{ color: '#888' }}>
-                1997 . 12 . 24
-              </Typography>
-            </Box>
-            <Box className="about-profile-row">
-              <Box className="profile-photo-placeholder">
-                <Typography sx={{ color: '#B8A9C9', fontSize: '0.85rem' }}>PHOTO</Typography>
-              </Box>
-              <Box className="profile-info">
-                <Typography variant="body2" sx={{ lineHeight: 1.8, color: '#555', textAlign: 'center', mb: 1.5 }}>
-                  추구미는 여리여리함🎀이지만 그렇지 못한편
-                  <br />
-                  비전공자 출신으로 뒤늦게 처음부터 새로 시작했지만
-                  <br />
-                  미래의 <strong>웹디자이너</strong>가 될 사람 😋
+          {/* Profile area - 원형 사진이 카드 왼쪽에 절반 겹치는 구조 */}
+          <Box sx={{ position: 'relative', ml: '150px', mb: 3 }}>
+            {/* 흰색 카드 - 800x400 */}
+            <Box
+              sx={{
+                width: '800px',
+                height: '400px',
+                background: 'white',
+                borderRadius: '16px',
+                boxShadow: '0 4px 20px rgba(156,139,180,0.15)',
+                border: '1px solid #E8E0F0',
+                pl: '170px',
+                pr: '28px',
+                py: '24px',
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'center',
+                boxSizing: 'border-box',
+              }}
+            >
+              {/* 이름 */}
+              <Box sx={{ mb: 1 }}>
+                <Typography variant="h6" sx={{ fontWeight: 700 }}>
+                  임여진 <Typography component="span" sx={{ fontWeight: 400, color: '#888' }}>/ Limyeojin</Typography>
                 </Typography>
-                <Box className="personality-columns">
-                  {[
-                    ['호기심많은 예술가', 'ISFP'],
-                    ['낯을 좀 가리지만 친해지면', '재밌고 배려심 넘치는 성격'],
-                    ['ISFP 치고 꽤나', '성실✊한편'],
-                    ['일할때 튀어나오는', 'TJ 모먼트'],
-                  ].map(([left, right], i) => (
-                    <Box key={i} className="personality-pair">
-                      <Typography component="span" variant="body2" className="p-left" sx={{ lineHeight: 2, color: '#555' }}>
-                        {left}
-                      </Typography>
-                      <Typography component="span" variant="body2" className="p-right" sx={{ lineHeight: 2, color: '#9B8BB4', fontWeight: 500 }}>
-                        {right}
-                      </Typography>
-                    </Box>
-                  ))}
-                </Box>
-                <Box sx={{ mt: 1.5, textAlign: 'center' }}>
-                  <Box
-                    component="span"
-                    sx={{
-                      color: '#fff',
-                      fontWeight: 600,
-                      fontSize: '0.875rem',
-                      backgroundColor: '#cfd5e3',
-                      borderRadius: '6px',
-                      padding: '5px 16px',
-                      display: 'inline',
-                      lineHeight: 2.2,
-                    }}
-                  >
-                    빠르고 계획적으로 일처리하는 능력자✌
+                <Typography variant="body2" sx={{ color: '#888' }}>
+                  1997 . 12 . 24
+                </Typography>
+              </Box>
+
+              {/* 소개 */}
+              <Typography variant="body2" sx={{ lineHeight: 1.8, color: '#555', mb: 1.5 }}>
+                추구미는 여리여리함🎀이지만 그렇지 못한편
+                <br />
+                비전공자 출신으로 뒤늦게 처음부터 새로 시작했지만
+                <br />
+                미래의 <strong>웹디자이너</strong>가 될 사람 😋
+              </Typography>
+
+              {/* 성격 */}
+              <Box className="personality-columns" sx={{ mb: 1.5 }}>
+                {[
+                  ['호기심많은 예술가', 'ISFP'],
+                  ['낯을 좀 가리지만 친해지면', '재밌고 배려심 넘치는 성격'],
+                  ['ISFP 치고 꽤나', '성실✊한편'],
+                  ['일할때 튀어나오는', 'TJ 모먼트'],
+                ].map(([left, right], i) => (
+                  <Box key={i} className="personality-pair">
+                    <Typography component="span" variant="body2" className="p-left" sx={{ lineHeight: 2, color: '#555' }}>
+                      {left}
+                    </Typography>
+                    <Typography component="span" variant="body2" className="p-right" sx={{ lineHeight: 2, color: '#9B8BB4', fontWeight: 500 }}>
+                      {right}
+                    </Typography>
                   </Box>
+                ))}
+              </Box>
+
+              {/* 배지 */}
+              <Box>
+                <Box
+                  component="span"
+                  sx={{
+                    color: '#fff',
+                    fontWeight: 600,
+                    fontSize: '0.875rem',
+                    backgroundColor: '#cfd5e3',
+                    borderRadius: '6px',
+                    padding: '5px 16px',
+                    display: 'inline',
+                    lineHeight: 2.2,
+                  }}
+                >
+                  빠르고 계획적으로 일처리하는 능력자✌
                 </Box>
               </Box>
+            </Box>
+
+            {/* 프로필 원형 사진 - 300x400, 카드 왼쪽에 절반(150px) 겹침 */}
+            <Box
+              sx={{
+                position: 'absolute',
+                left: '-150px',
+                top: '50%',
+                transform: 'translateY(-50%)',
+                width: '300px',
+                height: '300px',
+                borderRadius: '50%',
+                overflow: 'hidden',
+                border: '3px solid #B8A9C9',
+                zIndex: 1,
+                boxShadow: '0 4px 20px rgba(156,139,180,0.2)',
+              }}
+            >
+              <Box
+                component="img"
+                src="/profile.jpg"
+                alt="프로필 사진"
+                sx={{
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'cover',
+                  objectPosition: 'center 15%',
+                  display: 'block',
+                }}
+              />
             </Box>
           </Box>
 
