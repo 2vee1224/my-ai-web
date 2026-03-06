@@ -587,6 +587,7 @@ function ProjectAndContact() {
                       alignItems: 'center',
                       justifyContent: 'center',
                       gap: 0.5,
+                      borderRadius: '12px 12px 0 0',
                     }}
                   >
                     { project.previewIcon ? (
