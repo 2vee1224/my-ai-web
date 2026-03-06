@@ -1,3 +1,13 @@
+/* ===== Floating 애니메이션 ===== */
+@keyframes deco-float {
+  0%, 100% { translate: 0 0px; }
+  50%       { translate: 0 -12px; }
+}
+.deco-float   { animation: deco-float 3s   ease-in-out infinite; }
+.deco-float-2 { animation: deco-float 3.5s ease-in-out infinite 0.4s; }
+.deco-float-3 { animation: deco-float 4s   ease-in-out infinite 0.8s; }
+.deco-float-4 { animation: deco-float 3.2s ease-in-out infinite 1.2s; }
+
 /* ===== Page (scroll snap unit) ===== */
 .page {
   height: 1080px;
@@ -14,7 +24,7 @@
 
 /* ===== Page 1: About Me ===== */
 .page-1 {
-  background: linear-gradient(180deg, #E8E0F0 0%, #F8F5FC 100%);
+  background: linear-gradient(180deg, #c3bed4 0%, #d4d0e0 100%);
 }
 
 .about-profile-card {
@@ -109,7 +119,7 @@
 
 .page-2-skills {
   flex: 2;
-  background: linear-gradient(180deg, #E8EDF5 0%, #F0EDF7 100%);
+  background: linear-gradient(180deg, #F0EDF7 0%, #E8E0F0 100%);
   display: flex;
   align-items: center;
   padding: 20px 0;

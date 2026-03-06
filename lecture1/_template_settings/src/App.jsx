@@ -13,8 +13,6 @@ import {
 import EmailIcon from '@mui/icons-material/Email';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import SportsEsportsIcon from '@mui/icons-material/SportsEsports';
-import MovieIcon from '@mui/icons-material/Movie';
-import FlightIcon from '@mui/icons-material/Flight';
 import FlightTakeoffIcon from '@mui/icons-material/FlightTakeoff';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 import './App.css';
@@ -49,9 +47,10 @@ function Navigation() {
             className="nav-button"
             sx={{
               color: '#333',
-              fontFamily: '"Playfair Display", serif',
-              fontSize: '0.95rem',
+              fontFamily: '"Rubik", sans-serif',
+              fontSize: '1.15rem',
               fontWeight: 500,
+              fontStyle: 'italic',
               letterSpacing: '0.05em',
               py: 0.5,
               '&:hover': { color: '#9B8BB4', bgcolor: 'transparent' },
@@ -65,32 +64,60 @@ function Navigation() {
   );
 }
 
-function SectionTitle({ children }) {
+/**
+ * Deco 컴포넌트 - 장식 이미지 (절대 위치)
+ * @param {string} src - 파일명 [Required]
+ * @param {object} sx - 위치/크기/회전 스타일 [Required]
+ */
+function Deco({ src, sx, className }) {
   return (
-    <Typography
-      variant="h4"
-      className="section-title"
-      sx={{
-        textAlign: 'center',
-        mb: 2.5,
-        color: '#5C4B7A',
-        fontFamily: '"Playfair Display", serif',
-        fontWeight: 700,
-        letterSpacing: '0.1em',
-        textTransform: 'uppercase',
-      }}
-    >
-      {children}
-    </Typography>
+    <Box
+      component="img"
+      src={`${import.meta.env.BASE_URL}${src}`}
+      alt=""
+      className={className}
+      sx={{ position: 'absolute', pointerEvents: 'none', zIndex: 2, ...sx }}
+    />
+  );
+}
+
+/**
+ * SectionTitle 컴포넌트
+ * @param {string} imageSrc - 타이틀 이미지 파일명 [Required]
+ * @param {string} children - alt 텍스트 [Required]
+ */
+function SectionTitle({ children, imageSrc }) {
+  return (
+    <Box sx={{ textAlign: 'center', mb: 2.5 }}>
+      <Box
+        component="img"
+        src={`${import.meta.env.BASE_URL}${imageSrc}`}
+        alt={children}
+        sx={{ height: '64px', objectFit: 'contain' }}
+      />
+    </Box>
   );
 }
 
 function AboutMe() {
   return (
-    <Box id="about-me" className="page page-1">
+    <Box id="about-me" className="page page-1" sx={{ position: 'relative' }}>
+      {/* ABOUT ME 데코 */}
+      {/* png_11 - 프로필 원 좌상단에 겹치게 */}
+      <Deco src="png_11.png" sx={{ left: '75px', top: '118px', width: '200px' }} className="deco-float" />
+      {/* img_02 - 흰 카드 우상단 모서리 정중앙 */}
+      <Deco src="img_02.png" sx={{ right: '25px', top: '113px', width: '220px', transform: 'rotate(12deg)', opacity: 0.7 }} />
+      {/* png_16(Y) 조금 왼쪽·위로, png_17(J)와 겹쳐도 됨 */}
+      <Deco src="png_16.png" sx={{ right: '65px',  top: '220px', width: '150px', transform: 'rotate(-5deg)' }} className="deco-float-3" />
+      <Deco src="png_17.png" sx={{ right: '15px',  top: '212px', width: '140px', transform: 'rotate(2deg)' }} className="deco-float-2" />
+      {/* png_14 - 흰 카드 우하단 꼭지점, 오른쪽으로 기울임 */}
+      <Deco src="png_14.png" sx={{ right: '35px', top: '455px', width: '175px', transform: 'rotate(12deg)' }} className="deco-float-2" />
+      {/* MY FAVORITES 데코 */}
+      <Deco src="png_8.png"  sx={{ right: '-5px', top: '565px', width: '210px', transform: 'rotate(10deg)' }} />
+      <Deco src="png_13.png" sx={{ left: '40px',  bottom: '-15px', width: '160px', transform: 'rotate(-3deg)' }} className="deco-float-3" />
       <Box className="page-inner" sx={{ pt: '56px' }}>
         <Container maxWidth="lg">
-          <SectionTitle>About Me</SectionTitle>
+          <SectionTitle imageSrc="title_1.png">About Me</SectionTitle>
 
           {/* Profile area - 원형+카드 합산 950px을 가운데 정렬 */}
           <Box sx={{ width: '950px', mx: 'auto', position: 'relative', mb: 3 }}>
@@ -186,80 +213,124 @@ function AboutMe() {
                 border: '3px solid #B8A9C9',
                 zIndex: 1,
                 boxShadow: '0 4px 20px rgba(156,139,180,0.2)',
+                backgroundColor: '#E8E0F0',
               }}
             >
               <Box
                 component="img"
-                src="/profile.jpg"
+                src={`${import.meta.env.BASE_URL}profile.jpg`}
                 alt="프로필 사진"
                 sx={{
                   width: '100%',
                   height: '100%',
                   objectFit: 'cover',
-                  objectPosition: 'center 15%',
+                  objectPosition: 'center 30%',
                   display: 'block',
                 }}
               />
             </Box>
           </Box>
 
-          {/* My Favorites */}
-          <Box sx={{ mt: 2.5 }}>
-            <Typography
-              variant="h6"
+          {/* My Favorites - 1000px 래퍼로 타이틀과 카드 왼쪽 정렬 맞춤 */}
+          <Box sx={{ mt: 6, width: '1000px', mx: 'auto' }}>
+            {/* 타이틀 + 테이프: 왼쪽정렬, 타이틀과 테이프 겹치게, 아래 흰색카드와 좌측정렬 */}
+            <Box sx={{ position: 'relative', display: 'inline-block', mb: '-16px', zIndex: 2 }}>
+              {/* img_05 테이프 - 타이틀과 겹치게 (absolute, 중앙에) */}
+              <Box
+                component="img"
+                src={`${import.meta.env.BASE_URL}img_05.png`}
+                alt=""
+                sx={{
+                  position: 'absolute',
+                  top: '50%',
+                  left: '-50px',
+                  width: 'calc(100% + 100px)',
+                  height: '104px',
+                  objectFit: 'fill',
+                  transform: 'translateY(-50%)',
+                  zIndex: 0,
+                  pointerEvents: 'none',
+                  opacity: 0.7,
+                }}
+              />
+              {/* MY FAVORITES 타이틀 이미지 - 테이프 위에 */}
+              <Box
+                component="img"
+                src={`${import.meta.env.BASE_URL}title_6.png`}
+                alt="MY FAVORITES"
+                sx={{ height: '44px', objectFit: 'contain', display: 'block', position: 'relative', zIndex: 1 }}
+              />
+            </Box>
+            {/* 흰색 카드 래퍼 */}
+            <Box sx={{ position: 'relative', width: '1000px', zIndex: 1 }}>
+            {/* 흰색 카드 - 1000x400 */}
+            <Box
               sx={{
-                color: '#5C4B7A',
-                mb: 1.5,
-                fontFamily: '"Playfair Display", serif',
-                letterSpacing: '0.1em',
+                width: '1000px',
+                height: '400px',
+                background: 'white',
+                borderRadius: '16px',
+                boxShadow: '0 4px 20px rgba(156,139,180,0.15)',
+                border: '1px solid #E8E0F0',
+                display: 'flex',
+                alignItems: 'flex-start',
+                justifyContent: 'space-evenly',
+                pt: 4,
               }}
             >
-              MY FAVORITES
-            </Typography>
-            <Grid container spacing={2}>
               {[
-                {
-                  icon: <SportsEsportsIcon sx={{ fontSize: 36, color: '#B8A9C9' }} />,
-                  title: 'GAME',
-                  desc: '친구들과 게임하거나\n유튜브로 게임영상 보는걸\n좋아해요! 🎮',
-                },
-                {
-                  icon: <MovieIcon sx={{ fontSize: 36, color: '#B8A9C9' }} />,
-                  title: 'MOVIES',
-                  desc: '쉬는날 집에서 혼자\n영화보는걸 좋아해요!\n최애영화는 트와일라잇 시리즈💗',
-                },
-                {
-                  icon: <FlightIcon sx={{ fontSize: 36, color: '#B8A9C9' }} />,
-                  title: 'TRAVEL',
-                  desc: '국내든 해외든 여행다니는걸\n좋아해요! ✈️',
-                },
+                { banner: 'banner_1.png', title: 'GAME', desc: '친구들과 게임하거나\n유튜브로 게임영상 보는걸\n좋아해요! 🎮' },
+                { banner: 'banner_3.png', title: 'MOVIES', desc: '쉬는날 집에서 혼자\n영화보는걸 좋아해요!\n최애영화는 트와일라잇 시리즈💗' },
+                { banner: 'banner_4.png', title: 'TRAVEL', desc: '국내든 해외든 여행다니는걸\n좋아해요! ✈️' },
               ].map((item) => (
-                <Grid size={{ xs: 12, sm: 4 }} key={item.title}>
-                  <Card className="favorite-card" elevation={0}>
-                    <CardContent sx={{ textAlign: 'center', p: 2 }}>
-                      <Box className="favorite-icon-box">{item.icon}</Box>
-                      <Typography
-                        variant="subtitle2"
-                        sx={{
-                          fontWeight: 700,
-                          mb: 0.5,
-                          fontFamily: '"Playfair Display", serif',
-                          color: '#5C4B7A',
-                        }}
-                      >
-                        {item.title}
-                      </Typography>
-                      <Typography
-                        variant="caption"
-                        sx={{ color: '#666', whiteSpace: 'pre-line', lineHeight: 1.6, display: 'block' }}
-                      >
-                        {item.desc}
-                      </Typography>
-                    </CardContent>
-                  </Card>
-                </Grid>
+                <Box
+                  key={item.title}
+                  sx={{
+                    width: '200px',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                  }}
+                >
+                  {/* 배너 이미지 - 200x250 */}
+                  <Box sx={{ position: 'relative' }}>
+                    <Box
+                      component="img"
+                      src={`${import.meta.env.BASE_URL}${item.banner}`}
+                      alt={item.title}
+                      sx={{
+                        width: '200px',
+                        height: '250px',
+                        objectFit: 'cover',
+                        borderRadius: '8px',
+                        display: 'block',
+                        boxShadow: '0 0 0 5px #E8E0F0',
+                      }}
+                    />
+                    {/* GAME 카드 오른쪽 상단 png_2 */}
+                    {item.title === 'GAME' && (
+                      <Deco src="png_2.png" sx={{ right: '-25px', top: '-25px', width: '110px', transform: 'rotate(10deg)' }} />
+                    )}
+                  </Box>
+                  {/* 텍스트 - compact */}
+                  <Box sx={{ pt: 1, pb: 0.5, textAlign: 'center' }}>
+                    <Typography
+                      variant="subtitle2"
+                      sx={{ fontWeight: 700, mb: 0.3, fontFamily: '"Playfair Display", serif', color: '#5C4B7A' }}
+                    >
+                      {item.title}
+                    </Typography>
+                    <Typography
+                      variant="caption"
+                      sx={{ color: '#666', whiteSpace: 'pre-line', lineHeight: 1.5, display: 'block' }}
+                    >
+                      {item.desc}
+                    </Typography>
+                  </Box>
+                </Box>
               ))}
-            </Grid>
+            </Box>
+            </Box>
           </Box>
         </Container>
       </Box>
@@ -304,20 +375,33 @@ function HistoryAndSkills() {
   ];
 
   const skills = [
-    { name: 'PowerPoint', abbr: 'P', color: '#D04423', level: 80 },
-    { name: 'Photoshop', abbr: 'Ps', color: '#31A8FF', level: 75 },
-    { name: 'Excel', abbr: 'X', color: '#217346', level: 70 },
-    { name: 'Illustrator', abbr: 'Ai', color: '#FF9A00', level: 65 },
-    { name: 'Word', abbr: 'W', color: '#2B579A', level: 60 },
-    { name: 'VS Code', abbr: 'VS', color: '#007ACC', level: 55 },
+    { name: 'PowerPoint', abbr: 'P', color: '#D04423', level: 90 },
+    { name: 'Photoshop', abbr: 'Ps', color: '#31A8FF', level: 70 },
+    { name: 'Excel', abbr: 'X', color: '#217346', level: 90 },
+    { name: 'Illustrator', abbr: 'Ai', color: '#FF9A00', level: 70 },
+    { name: 'Word', abbr: 'W', color: '#2B579A', level: 100 },
+    { name: 'VS Code', abbr: 'VS', color: '#007ACC', level: 70 },
+    { name: 'Git', abbr: 'G', color: '#F05032', level: 60 },
+    { name: 'Ai', abbr: 'Ai', color: '#CC785C', level: 80 },
   ];
 
   return (
-    <Box id="history" className="page page-2">
+    <Box id="history" className="page page-2" sx={{ position: 'relative' }}>
+      {/* HISTORY 데코 */}
+      <Deco src="img_06.png" sx={{ left: '30px',  top: '40px',     width: '220px', transform: 'rotate(-5deg)' }} />
+      <Deco src="png_10.png" sx={{ left: '110px', top: '40px',     width: '160px', transform: 'rotate(-10deg)' }} className="deco-float-4" />
+      <Deco src="img_16.png" sx={{ left: '30px',  bottom: '460px', width: '200px', transform: 'rotate(-8deg)' }} />
+      <Deco src="png_7.png"  sx={{ left: '0px', bottom: '462px', width: '165px', transform: 'rotate(-5deg)' }} />
+      <Deco src="img_08.png" sx={{ right: '30px', top: '30px',     width: '260px', transform: 'rotate(12deg)' }} />
+      <Deco src="img_13.png" sx={{ right: '35px', bottom: '500px', width: '210px', transform: 'rotate(-5deg)' }} />
+      <Deco src="png_1.png"  sx={{ right: '5px',  bottom: '495px', width: '160px', transform: 'rotate(10deg)' }} className="deco-float-2" />
+      {/* SKILLS 스티커 - 흰색카드 밖 보라색 배경에 배치해야 mix-blend-mode 적용됨 */}
+      {/* png_9 - skills-card 왼쪽 상단 꼭지점에 겹치게 */}
+      <Deco src="png_9.png"  sx={{ left: '120px', top: '686px', width: '165px', transform: 'rotate(-10deg)', zIndex: 10 }} />
       {/* History - 3/5 */}
       <Box className="page-2-history">
         <Container maxWidth="md">
-          <SectionTitle>History</SectionTitle>
+          <SectionTitle imageSrc="title_2.png">History</SectionTitle>
           <Box className="timeline-container">
             <Box className="timeline-line" />
             <Grid container spacing={3}>
@@ -361,10 +445,13 @@ function HistoryAndSkills() {
       </Box>
 
       {/* Skills - 2/5 */}
-      <Box id="skills" className="page-2-skills">
+      <Box id="skills" className="page-2-skills" sx={{ justifyContent: 'center', flexDirection: 'column' }}>
         <Container maxWidth="md">
-          <SectionTitle>Skills</SectionTitle>
-          <Box className="skills-card">
+          <SectionTitle imageSrc="title_3.png">Skills</SectionTitle>
+          <Box className="skills-card" sx={{ position: 'relative', py: '28px' }}>
+            {/* SKILLS 카드 데코 */}
+            <Deco src="img_21.png" sx={{ right: '-92px', top: '-65px', width: '205px', transform: 'rotate(8deg)', opacity: 0.75, mixBlendMode: 'multiply' }} />
+            <Deco src="png_12.png" sx={{ right: '-148px', top: '-90px', width: '190px', transform: 'rotate(8deg)' }} className="deco-float-3" />
             <Grid container spacing={2}>
               {skills.map((skill) => (
                 <Grid size={{ xs: 6, sm: 6 }} key={skill.name}>
@@ -442,11 +529,18 @@ function ProjectAndContact() {
   ];
 
   return (
-    <Box id="project" className="page page-3">
+    <Box id="project" className="page page-3" sx={{ position: 'relative' }}>
+      {/* PROJECT 오른쪽 중간 데코 */}
+      <Deco src="img_03.png" sx={{ right: '15px',  top: '42%', width: '170px', transform: 'rotate(-8deg)' }} />
+      <Deco src="png_5.png"  sx={{ right: '80px',  top: '45%', width: '125px', transform: 'rotate(10deg)' }} className="deco-float-4" />
+      {/* PROJECT 왼쪽 하단 데코 - page-3 레벨 */}
+      <Deco src="img_04.png" sx={{ left: '0px',  bottom: '162px', width: '165px', transform: 'rotate(8deg)' }} />
+      <Deco src="png_15.png" sx={{ left: '68px', bottom: '188px', width: '110px', transform: 'rotate(5deg)' }} className="deco-float-4" />
       {/* Project - 8.5/10 */}
       <Box className="page-3-project">
         <Container maxWidth="md">
-          <SectionTitle>Project</SectionTitle>
+          <SectionTitle imageSrc="title_4.png">Project</SectionTitle>
+          <Box sx={{ mb: 3 }} />
           <Grid container spacing={3}>
             {projects.map((project, i) => (
               <Grid size={{ xs: 12, sm: 6 }} key={i}>
@@ -455,7 +549,8 @@ function ProjectAndContact() {
                     borderRadius: '12px',
                     border: '1px solid #E8E0F0',
                     background: '#FDFCFE',
-                    overflow: 'hidden',
+                    overflow: 'visible',
+                    position: 'relative',
                     transition: 'box-shadow 0.3s',
                     height: '100%',
                     cursor: project.url ? 'pointer' : 'default',
@@ -463,6 +558,9 @@ function ProjectAndContact() {
                   }}
                   onClick={ () => project.url && window.open(project.url, '_blank') }
                 >
+                  {/* 첫 번째 카드(i=0) 왼쪽 상단 png_4 */}
+                  {i === 0 && <Deco src="png_4.png"  sx={{ left: '-60px', top: '-80px',     width: '150px', transform: 'rotate(-12deg)' }} />}
+                  {/* 세 번째 카드(i=2) 왼쪽 하단 img_04 + png_15 */}
                   {/* 미리보기 */}
                   <Box
                     sx={{
@@ -513,20 +611,23 @@ function ProjectAndContact() {
       {/* Contect - 1.5/10 */}
       <Box id="contect" className="page-3-contact">
         <Container maxWidth="md">
-          <SectionTitle>Contect</SectionTitle>
+          <SectionTitle imageSrc="title_5.png">Contect</SectionTitle>
           <Box sx={{ textAlign: 'center' }}>
             <Box
               sx={{
+                position: 'relative',
                 display: 'inline-flex',
                 alignItems: 'center',
                 gap: 1.5,
                 bgcolor: 'white',
-                px: 4,
-                py: 1,
+                px: 8,
+                py: 1.5,
                 borderRadius: 3,
                 boxShadow: '0 2px 12px rgba(156,139,180,0.15)',
               }}
             >
+              <Deco src="png_3.png" sx={{ left: '-80px',  top: '-90px', width: '180px', transform: 'rotate(-12deg)' }} />
+              <Deco src="png_6.png" sx={{ right: '-80px', top: '-90px', width: '170px', transform: 'rotate(12deg)' }} />
               <EmailIcon sx={{ color: '#9B8BB4' }} />
               <Typography variant="body2" sx={{ color: '#555' }}>
                 wlsdlgnsdl97@naver.com
