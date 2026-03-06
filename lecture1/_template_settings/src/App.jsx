@@ -104,7 +104,7 @@ function AboutMe() {
     <Box id="about-me" className="page page-1" sx={{ position: 'relative' }}>
       {/* ABOUT ME 데코 */}
       {/* png_11 - 프로필 원 좌상단에 겹치게 */}
-      <Deco src="png_11.png" sx={{ left: '75px', top: '118px', width: '200px' }} className="deco-float" />
+      <Deco src="png_11.png" sx={{ left: '75px', top: '118px', width: '200px' }} className="deco-float-noshadow" />
       {/* img_02 - 흰 카드 우상단 모서리 정중앙 */}
       <Deco src="img_02.png" sx={{ right: '25px', top: '113px', width: '220px', transform: 'rotate(12deg)', opacity: 0.7 }} />
       {/* png_16(Y) 조금 왼쪽·위로, png_17(J)와 겹쳐도 됨 */}
@@ -386,20 +386,27 @@ function HistoryAndSkills() {
   ];
 
   return (
-    <Box id="history" className="page page-2" sx={{ position: 'relative' }}>
-      {/* HISTORY 데코 */}
-      <Deco src="img_06.png" sx={{ left: '30px',  top: '40px',     width: '220px', transform: 'rotate(-5deg)' }} />
-      <Deco src="png_10.png" sx={{ left: '110px', top: '40px',     width: '160px', transform: 'rotate(-10deg)' }} className="deco-float-4" />
-      <Deco src="img_16.png" sx={{ left: '30px',  bottom: '460px', width: '200px', transform: 'rotate(-8deg)' }} />
-      <Deco src="png_7.png"  sx={{ left: '0px', bottom: '462px', width: '165px', transform: 'rotate(-5deg)' }} />
-      <Deco src="img_08.png" sx={{ right: '30px', top: '30px',     width: '260px', transform: 'rotate(12deg)' }} />
-      <Deco src="img_13.png" sx={{ right: '35px', bottom: '500px', width: '210px', transform: 'rotate(-5deg)' }} />
-      <Deco src="png_1.png"  sx={{ right: '5px',  bottom: '495px', width: '160px', transform: 'rotate(10deg)' }} className="deco-float-2" />
-      {/* SKILLS 스티커 - 흰색카드 밖 보라색 배경에 배치해야 mix-blend-mode 적용됨 */}
-      {/* png_9 - skills-card 왼쪽 상단 꼭지점에 겹치게 */}
-      <Deco src="png_9.png"  sx={{ left: '120px', top: '686px', width: '165px', transform: 'rotate(-10deg)', zIndex: 10 }} />
-      {/* History - 3/5 */}
-      <Box className="page-2-history">
+    <>
+      {/* History - 독립 스냅 페이지 (580px) */}
+      <Box
+        id="history"
+        sx={{
+          height: '750px',
+          scrollSnapAlign: 'start',
+          position: 'relative',
+          overflow: 'hidden',
+          background: 'white',
+          display: 'flex',
+          alignItems: 'center',
+        }}
+      >
+        <Deco src="img_06.png" sx={{ left: '30px',  top: '40px',   width: '220px', transform: 'rotate(-5deg)' }} />
+        <Deco src="png_10.png" sx={{ left: '110px', top: '40px',   width: '160px', transform: 'rotate(-10deg)' }} className="deco-float-4" />
+        <Deco src="img_16.png" sx={{ left: '30px',  bottom: '28px', width: '200px', transform: 'rotate(-8deg)' }} />
+        <Deco src="png_7.png"  sx={{ left: '0px',   bottom: '30px', width: '165px', transform: 'rotate(-5deg)' }} />
+        <Deco src="img_08.png" sx={{ right: '30px', top: '30px',   width: '260px', transform: 'rotate(12deg)' }} />
+        <Deco src="img_13.png" sx={{ right: '35px', bottom: '68px', width: '210px', transform: 'rotate(-5deg)' }} />
+        <Deco src="png_1.png"  sx={{ right: '5px',  bottom: '63px', width: '160px', transform: 'rotate(10deg)' }} className="deco-float-2" />
         <Container maxWidth="md">
           <SectionTitle imageSrc="title_2.png">History</SectionTitle>
           <Box className="timeline-container">
@@ -444,22 +451,30 @@ function HistoryAndSkills() {
         </Container>
       </Box>
 
-      {/* Skills - 2/5 */}
-      <Box id="skills" className="page-2-skills" sx={{ justifyContent: 'center', flexDirection: 'column' }}>
+      {/* Skills - 독립 스냅 페이지 (432px) */}
+      <Box
+        id="skills"
+        sx={{
+          height: '500px',
+          scrollSnapAlign: 'start',
+          position: 'relative',
+          overflow: 'hidden',
+          background: 'linear-gradient(180deg, #F0EDF7 0%, #E8E0F0 100%)',
+          display: 'flex',
+          alignItems: 'center',
+        }}
+      >
+        <Deco src="png_9.png" sx={{ left: '120px', top: '38px', width: '165px', transform: 'rotate(-10deg)', zIndex: 10 }} />
         <Container maxWidth="md">
           <SectionTitle imageSrc="title_3.png">Skills</SectionTitle>
           <Box className="skills-card" sx={{ position: 'relative', py: '28px' }}>
-            {/* SKILLS 카드 데코 */}
             <Deco src="img_21.png" sx={{ right: '-92px', top: '-65px', width: '205px', transform: 'rotate(8deg)', opacity: 0.75, mixBlendMode: 'multiply' }} />
             <Deco src="png_12.png" sx={{ right: '-148px', top: '-90px', width: '190px', transform: 'rotate(8deg)' }} className="deco-float-3" />
             <Grid container spacing={2}>
               {skills.map((skill) => (
                 <Grid size={{ xs: 6, sm: 6 }} key={skill.name}>
                   <Box className="skill-row">
-                    <Box
-                      className="skill-icon"
-                      sx={{ bgcolor: skill.color, color: 'white' }}
-                    >
+                    <Box className="skill-icon" sx={{ bgcolor: skill.color, color: 'white' }}>
                       <Typography sx={{ fontWeight: 700, fontSize: '0.7rem' }}>
                         {skill.abbr}
                       </Typography>
@@ -492,7 +507,7 @@ function HistoryAndSkills() {
           </Box>
         </Container>
       </Box>
-    </Box>
+    </>
   );
 }
 

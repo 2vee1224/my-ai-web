@@ -3,10 +3,11 @@
   0%, 100% { translate: 0 0px; }
   50%       { translate: 0 -12px; }
 }
-.deco-float   { animation: deco-float 3s   ease-in-out infinite; }
-.deco-float-2 { animation: deco-float 3.5s ease-in-out infinite 0.4s; }
-.deco-float-3 { animation: deco-float 4s   ease-in-out infinite 0.8s; }
-.deco-float-4 { animation: deco-float 3.2s ease-in-out infinite 1.2s; }
+.deco-float          { animation: deco-float 3s   ease-in-out infinite; filter: drop-shadow(0 28px 18px rgba(0,0,0,0.22)); }
+.deco-float-noshadow { animation: deco-float 3s   ease-in-out infinite; }
+.deco-float-2 { animation: deco-float 3.5s ease-in-out infinite 0.4s; filter: drop-shadow(0 28px 18px rgba(0,0,0,0.22)); }
+.deco-float-3 { animation: deco-float 4s   ease-in-out infinite 0.8s; filter: drop-shadow(0 28px 18px rgba(0,0,0,0.22)); }
+.deco-float-4 { animation: deco-float 3.2s ease-in-out infinite 1.2s; filter: drop-shadow(0 28px 18px rgba(0,0,0,0.22)); }
 
 /* ===== Page (scroll snap unit) ===== */
 .page {
