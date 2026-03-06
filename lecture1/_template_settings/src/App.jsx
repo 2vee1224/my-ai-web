@@ -464,7 +464,7 @@ function HistoryAndSkills() {
           alignItems: 'center',
         }}
       >
-        <Deco src="png_9.png" sx={{ left: '120px', top: '38px', width: '165px', transform: 'rotate(-10deg)', zIndex: 10 }} />
+        <Deco src="png_9.png" sx={{ left: '120px', top: '75px', width: '165px', transform: 'rotate(-10deg)', zIndex: 10 }} />
         <Container maxWidth="md">
           <SectionTitle imageSrc="title_3.png">Skills</SectionTitle>
           <Box className="skills-card" sx={{ position: 'relative', py: '28px' }}>
