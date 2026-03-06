@@ -92,11 +92,12 @@ function AboutMe() {
         <Container maxWidth="lg">
           <SectionTitle>About Me</SectionTitle>
 
-          {/* Profile area - 원형 사진이 카드 왼쪽에 절반 겹치는 구조 */}
-          <Box sx={{ position: 'relative', ml: '150px', mb: 3 }}>
-            {/* 흰색 카드 - 800x400 */}
+          {/* Profile area - 원형+카드 합산 950px을 가운데 정렬 */}
+          <Box sx={{ width: '950px', mx: 'auto', position: 'relative', mb: 3 }}>
+            {/* 흰색 카드 - 800x400, ml:150px으로 원형 왼쪽 공간 확보 */}
             <Box
               sx={{
+                ml: '150px',
                 width: '800px',
                 height: '400px',
                 background: 'white',
@@ -109,6 +110,7 @@ function AboutMe() {
                 display: 'flex',
                 flexDirection: 'column',
                 justifyContent: 'center',
+                textAlign: 'center',
                 boxSizing: 'border-box',
               }}
             >
@@ -123,7 +125,7 @@ function AboutMe() {
               </Box>
 
               {/* 소개 */}
-              <Typography variant="body2" sx={{ lineHeight: 1.8, color: '#555', mb: 1.5 }}>
+              <Typography variant="body2" sx={{ lineHeight: 1.8, color: '#555', textAlign: 'center', mb: 1.5 }}>
                 추구미는 여리여리함🎀이지만 그렇지 못한편
                 <br />
                 비전공자 출신으로 뒤늦게 처음부터 새로 시작했지만
@@ -151,7 +153,7 @@ function AboutMe() {
               </Box>
 
               {/* 배지 */}
-              <Box>
+              <Box sx={{ textAlign: 'center' }}>
                 <Box
                   component="span"
                   sx={{
@@ -170,11 +172,11 @@ function AboutMe() {
               </Box>
             </Box>
 
-            {/* 프로필 원형 사진 - 300x400, 카드 왼쪽에 절반(150px) 겹침 */}
+            {/* 프로필 원형 사진 - left:0 (wrapper 기준), 카드와 150px 겹침 */}
             <Box
               sx={{
                 position: 'absolute',
-                left: '-150px',
+                left: 0,
                 top: '50%',
                 transform: 'translateY(-50%)',
                 width: '300px',
