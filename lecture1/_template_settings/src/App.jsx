@@ -490,7 +490,7 @@ function ProjectAndContact() {
     },
     {
       title: 'Game Hub - 게임 커뮤니티',
-      tool: '사용툴 : React · Vite · MUI, VS Code, Claude Ai',
+      tool: '사용툴 : VS Code, Claude Ai',
       detail: '기여도 100%\n기획 1일 / 작업 1일 소요',
       url: 'https://2vee1224.github.io/my-ai-web/lecture1/',
       previewBg: 'linear-gradient(135deg, #1a1a2e, #16213e)',
@@ -499,7 +499,7 @@ function ProjectAndContact() {
     },
     {
       title: 'Travel Log - 여행 SNS',
-      tool: '사용툴 : React · Vite · MUI · Supabase, VS Code, Claude Ai',
+      tool: '사용툴 : VS Code, Claude Ai',
       detail: '기여도 100%\n기획 1일 / 작업 1일 소요',
       url: 'https://2vee1224.github.io/my-ai-web/lecture1/mini_sns/',
       previewBg: 'linear-gradient(135deg, #87CEEB, #98FB98)',
