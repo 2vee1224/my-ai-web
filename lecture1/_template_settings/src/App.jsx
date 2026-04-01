@@ -13,6 +13,7 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import SportsEsportsIcon from '@mui/icons-material/SportsEsports';
 import FlightTakeoffIcon from '@mui/icons-material/FlightTakeoff';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
+import LocalMallIcon from '@mui/icons-material/LocalMall';
 import './App.css';
 
 const navItems = ['About me', 'History', 'Skills', 'Project', 'Contect'];
@@ -482,6 +483,10 @@ function ProjectAndContact() {
       title: '자스민벨 쇼핑몰 홈페이지 리디자인',
       tool: '사용툴 : Ps, VS Code, Claude Ai',
       detail: '기여도 100%\n기획 3일 / 작업 4주 소요',
+      url: 'https://2vee1224.github.io/jasminbell-redesign/',
+      previewBg: 'linear-gradient(135deg, #ffcdd2, #f8bbd0)',
+      previewIcon: <LocalMallIcon sx={{ fontSize: 40, color: '#fff' }} />,
+      previewLabel: 'Jasminbell',
     },
     {
       title: 'Game Hub - 게임 커뮤니티',
