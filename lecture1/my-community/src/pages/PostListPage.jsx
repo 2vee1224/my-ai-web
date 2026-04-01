@@ -13,6 +13,7 @@ import AddIcon from '@mui/icons-material/Add';
 import PostCard from '../components/landing/PostCard';
 import useAuth from '../hooks/useAuth';
 import { supabase } from '../utils/supabase';
+import { SAMPLE_POSTS } from '../data/samplePosts';
 
 const CATEGORIES = [
   { label: '전체', value: '' },
@@ -64,12 +65,22 @@ function PostListPage() {
     }
 
     const { data, error } = await query;
-    if (!error && data) {
+    if (!error && data && data.length > 0) {
       const formatted = data.map((p) => ({
         ...p,
         comment_count: p.comments?.[0]?.count || 0,
       }));
       setPosts(formatted);
+    } else {
+      // 실제 데이터가 없으면 샘플 데이터 사용 (포트폴리오 데모용)
+      let filtered = SAMPLE_POSTS;
+      if (selectedCategory) {
+        filtered = filtered.filter((p) => p.category === selectedCategory);
+      }
+      if (selectedGame !== '전체') {
+        filtered = filtered.filter((p) => p.game_name === selectedGame);
+      }
+      setPosts(filtered);
     }
     setLoading(false);
   }

@@ -19,6 +19,7 @@ import ReplyIcon from '@mui/icons-material/Reply';
 import DeleteIcon from '@mui/icons-material/Delete';
 import useAuth from '../hooks/useAuth';
 import { supabase } from '../utils/supabase';
+import { SAMPLE_POSTS } from '../data/samplePosts';
 
 function PostDetailPage() {
   const { id } = useParams();
@@ -54,6 +55,13 @@ function PostDetailPage() {
     if (data) {
       setPost(data);
       setLikesCount(data.likes_count);
+    } else {
+      // 샘플 데이터에서 찾기 (포트폴리오 데모용)
+      const samplePost = SAMPLE_POSTS.find((p) => String(p.id) === String(id));
+      if (samplePost) {
+        setPost(samplePost);
+        setLikesCount(samplePost.likes_count);
+      }
     }
     setLoading(false);
   }
