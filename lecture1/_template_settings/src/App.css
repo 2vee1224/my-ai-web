@@ -265,6 +265,11 @@
    모바일 전용 (768px 이하) - PC 레이아웃에 영향 없음
    ========================================================== */
 @media (max-width: 768px) {
+  /* 장식 이미지 전체 숨김 */
+  .deco-img {
+    display: none !important;
+  }
+
   /* 페이지 고정 높이 해제 */
   .page {
     height: auto;
@@ -281,45 +286,24 @@
   /* 네비게이션 */
   .nav-bar {
     max-width: 100% !important;
+    left: 0 !important;
+    transform: none !important;
   }
 
   .nav-toolbar {
-    gap: 4px !important;
+    gap: 2px !important;
     padding-left: 4px !important;
     padding-right: 4px !important;
   }
 
   .nav-button {
-    font-size: 0.72rem !important;
-    padding-left: 6px !important;
-    padding-right: 6px !important;
+    font-size: 0.7rem !important;
+    padding-left: 4px !important;
+    padding-right: 4px !important;
     min-width: auto !important;
   }
 
-  /* 섹션 타이틀 */
-  .section-title {
-    font-size: 1.4rem !important;
-    margin-bottom: 12px !important;
-  }
-
-  /* About Me */
-  .about-profile-card {
-    padding: 16px;
-  }
-
-  .about-profile-row {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    gap: 12px;
-  }
-
-  .profile-photo-placeholder {
-    width: 100px;
-    height: 100px;
-    min-width: 100px;
-  }
-
+  /* 성격 컬럼 */
   .personality-columns {
     display: block;
     text-align: center;
@@ -339,14 +323,7 @@
     content: " ";
   }
 
-  .favorite-icon-box {
-    width: 44px;
-    height: 44px;
-  }
-
-  /* History / Skills 섹션 높이 */
-  .page-2-history,
-  .page-2-skills,
+  /* History / Skills / Project / Contact 레이아웃 */
   .page-3-project,
   .page-3-contact {
     flex: none;
@@ -374,23 +351,17 @@
 
   .skills-card {
     padding: 16px;
+    overflow: hidden;
   }
 
   /* Project */
-  .project-row {
-    flex-direction: column;
-    text-align: center;
-    padding: 16px;
-    gap: 12px;
-  }
-
-  .project-preview-box {
-    width: 100%;
-    min-width: auto;
-    height: 100px;
-  }
-
   .page-3-contact {
     padding: 20px 8px;
+    min-height: 120px;
+  }
+
+  /* Page 3 */
+  .page-3 {
+    overflow: visible;
   }
 }
