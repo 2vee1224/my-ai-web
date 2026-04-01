@@ -476,7 +476,7 @@ function ProjectAndContact() {
   const projects = [
     {
       title: '공차 카페 홈페이지 리디자인',
-      tool: '사용툴 : Ps, VS Code, Claude Ai',
+      tool: '사용툴 : Ps, Ai, VS Code, Claude Ai',
       detail: '기여도 100%\n기획 3일 / 작업 4주 소요',
     },
     {
