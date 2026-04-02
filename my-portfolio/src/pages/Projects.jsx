@@ -4,11 +4,12 @@ import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 const projects = [
   {
     id: 1,
-    title: '첫 번째 프로젝트',
-    description: '프로젝트 설명이 들어갈 공간입니다.',
-    tags: [],
-    link: null,
-    image: null,
+    title: '공차 카페 홈페이지 리디자인',
+    description:
+      '공차 코리아 공식 홈페이지를 리디자인했습니다.\n무한 배너 슬라이더, 드롭다운 네비게이션, 멤버십·매장 섹션, SNS 연동 등 인터랙티브한 UI를 구현했습니다.',
+    tags: ['HTML', 'CSS', 'JavaScript', 'UI/UX'],
+    link: 'https://2vee1224.github.io/gongcha-redesign/',
+    image: '/gongcha-thumb.jpg',
   },
   {
     id: 2,
@@ -87,6 +88,21 @@ export default function Projects() {
                   {String(project.id).padStart(2, '0')}
                 </Typography>
               </Box>
+
+              {/* 썸네일 */}
+              {project.image && (
+                <CardMedia
+                  component="img"
+                  image={project.image}
+                  alt={project.title}
+                  sx={{
+                    width: { xs: '100%', sm: 220 },
+                    height: { xs: 160, sm: 'auto' },
+                    objectFit: 'cover',
+                    flexShrink: 0,
+                  }}
+                />
+              )}
 
               {/* 내용 */}
               <Box sx={{ flex: 1, p: { xs: 3, md: 4 } }}>

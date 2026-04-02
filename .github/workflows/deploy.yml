@@ -27,11 +27,11 @@ jobs:
           node-version: 20
 
       - name: Install dependencies (portfolio)
-        working-directory: ./lecture1/_template_settings
+        working-directory: ./my-portfolio
         run: npm install
 
       - name: Build (portfolio)
-        working-directory: ./lecture1/_template_settings
+        working-directory: ./my-portfolio
         run: npm run build
 
       - name: Install dependencies (game community)
@@ -53,7 +53,7 @@ jobs:
       - name: Prepare deploy structure
         run: |
           mkdir -p deploy/lecture1/mini_sns
-          cp -r ./lecture1/_template_settings/dist/. deploy/
+          cp -r ./my-portfolio/dist/. deploy/
           cp -r ./lecture1/my-community/dist/. deploy/lecture1/
           cp -r ./lecture1/mini_sns/dist/. deploy/lecture1/mini_sns/
 
