@@ -14,6 +14,7 @@ import SportsEsportsIcon from '@mui/icons-material/SportsEsports';
 import FlightTakeoffIcon from '@mui/icons-material/FlightTakeoff';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 import LocalMallIcon from '@mui/icons-material/LocalMall';
+import LocalCafeIcon from '@mui/icons-material/LocalCafe';
 import './App.css';
 
 const navItems = ['About me', 'History', 'Skills', 'Project', 'Contect'];
@@ -479,8 +480,9 @@ function ProjectAndContact() {
       tool: '사용툴 : Ps, Ai, VS Code, Claude Ai',
       detail: '기여도 100%\n기획 3일 / 작업 4주 소요',
       url: 'https://2vee1224.github.io/gongcha-redesign/',
-      previewBg: 'none',
-      previewImg: 'gongcha-thumb.jpg',
+      previewBg: 'linear-gradient(135deg, #8B0000, #c30e2e)',
+      previewIcon: <LocalCafeIcon sx={{ fontSize: 40, color: '#fff' }} />,
+      previewLabel: 'Gong Cha',
     },
     {
       title: '자스민벨 쇼핑몰 홈페이지 리디자인',
