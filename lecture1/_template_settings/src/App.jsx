@@ -478,6 +478,9 @@ function ProjectAndContact() {
       title: '공차 카페 홈페이지 리디자인',
       tool: '사용툴 : Ps, Ai, VS Code, Claude Ai',
       detail: '기여도 100%\n기획 3일 / 작업 4주 소요',
+      url: 'https://2vee1224.github.io/gongcha-redesign/',
+      previewBg: 'none',
+      previewImg: 'gongcha-thumb.jpg',
     },
     {
       title: '자스민벨 쇼핑몰 홈페이지 리디자인',
@@ -544,15 +547,23 @@ function ProjectAndContact() {
                   <Box sx={{
                     width: '100%',
                     height: { xs: 80, md: 130 },
-                    background: project.previewBg || 'linear-gradient(135deg, #E8E0F0, #D0C4E0)',
+                    background: project.previewImg ? 'none' : (project.previewBg || 'linear-gradient(135deg, #E8E0F0, #D0C4E0)'),
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'center',
                     justifyContent: 'center',
                     gap: 0.5,
                     borderRadius: '12px 12px 0 0',
+                    overflow: 'hidden',
                   }}>
-                    {project.previewIcon ? (
+                    {project.previewImg ? (
+                      <Box
+                        component="img"
+                        src={`${import.meta.env.BASE_URL}${project.previewImg}`}
+                        alt={project.title}
+                        sx={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+                      />
+                    ) : project.previewIcon ? (
                       <>
                         {project.previewIcon}
                         <Typography sx={{ color: '#fff', fontSize: '0.75rem', fontWeight: 700 }}>
