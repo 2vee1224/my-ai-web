@@ -334,10 +334,11 @@ function HistoryAndSkills() {
   ];
   const rightItems = [
     { title: '뷰티코디네이터', detail: '2017.04 CSM 아카데미 평생교육원' },
+    { title: '병원코디네이터', detail: '2017.04 CSM 아카데미 평생교육원' },
     { title: '미용사 (메이크업)', detail: '2019.02 한국산업인력공단' },
     { title: '2종보통운전면허', detail: '2019.12 경찰청' },
+    { title: '웹디자인개발기능사', detail: '2026.04 한국산업인력공단' },
     { title: '컴퓨터그래픽기능사 (취득예정)' },
-    { title: '웹디자인개발기능사 (취득예정)' },
   ];
 
   const skills = [
