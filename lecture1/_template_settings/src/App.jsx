@@ -338,7 +338,7 @@ function HistoryAndSkills() {
     { title: '미용사 (메이크업)', detail: '2019.02 한국산업인력공단' },
     { title: '2종보통운전면허', detail: '2019.12 경찰청' },
     { title: '웹디자인개발기능사', detail: '2026.04 한국산업인력공단' },
-    { title: '컴퓨터그래픽기능사 (취득예정)' },
+    { title: '컴퓨터그래픽기능사', detail: '2026.04 한국산업인력공단' },
   ];
 
   const skills = [
